@@ -1,0 +1,125 @@
+*{
+    margin: 0px;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 130px;
+}
+
+#centerLogo{
+    height: 75px;
+    width: 20%;
+    align-self: center;
+    background-color: gray;
+}
+
+#headerMenu{
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    background-color: rgb(51, 48, 113);
+    color: white;
+    position: sticky;
+}
+
+
+.headerOption{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerOption:hover{
+    background-color: rgb(36, 34, 81);
+}
+
+#container{
+    height: 800px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#banner{
+    height: 400px;
+    width: 95%;
+    background-color: rgb(33, 30, 87);
+}
+
+#categoriesMain{
+    height: 400px;
+    width: 95%;
+}
+
+#categoriesText{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 72px;
+    color:  rgb(33, 30, 87);
+}
+#categories{
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+.category{
+    height: 40%;
+    width: 20%;
+    border-radius: 20px;
+    border: 1.5px rgb(33, 30, 87) solid;
+    display: flex;
+    color: rgb(33, 30, 87);
+    align-items: center;
+}
+.category:hover, #moreCategories:hover{
+    background-color: rgb(33, 30, 87);
+    color: white;
+}
+.categoryText{
+    width: 70%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.categoryImage{
+    height: 80%;
+    width: 30%;
+    background-color: black;
+}
+
+#moreCategoriesMain{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#moreCategories{
+    height: 90%;
+    width: 60%;
+    border-radius: 20px;
+    border: 1.5px rgb(33, 30, 87) solid;
+    display: flex;
+    font-size: 30px;
+    color: rgb(33, 30, 87);
+    align-items: center;
+    justify-content: center;
+}
+#moreCategories::after{
+    content: icon;
+    color: rgb(36, 34, 81);
+}
+footer{
+    height: 100px;
+    border: 2px solid purple;
+}
