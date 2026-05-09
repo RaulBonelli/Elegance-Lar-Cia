@@ -141,7 +141,10 @@ header{
     width: 50%;
     height: 100%;
     border: solid 2px red;
-
+}
+#comment1,#comment2{
+    width: 100%;
+    height: 100%;
 }
 
 footer{
