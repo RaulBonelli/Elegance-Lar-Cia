@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo — Elegance Lar & Cia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ===================== CSS VARIABLES ===================== */
+    :root {
+      --roxo:       #1E1055;
+      --roxo-mid:   #2D1B69;
+      --roxo-light: #4A2FA0;
+      --teal:       #00B4B4;
+      --teal-light: #00D4D4;
+      --gold:       #C9A84C;
+      --white:      #FFFFFF;
+      --off-white:  #F7F7FA;
+      --gray-light: #F0F0F5;
+      --gray:       #9999AA;
+      --gray-dark:  #444455;
+      --green-wa:   #25D366;
+      --orange-sh:  #EE4D2D;
+      --radius-sm:  10px;
+      --radius-md:  18px;
+      --radius-lg:  28px;
+      --shadow-sm:  0 2px 12px rgba(30,16,85,0.08);
+      --shadow-md:  0 8px 32px rgba(30,16,85,0.14);
+      --shadow-lg:  0 20px 60px rgba(30,16,85,0.18);
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ===================== RESET ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--gray-dark);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ===================== SCROLLBAR ===================== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--gray-light); }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 99px; }
+
+    /* ===================== HEADER ===================== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,180,180,0.15);
+      box-shadow: 0 2px 20px rgba(30,16,85,0.07);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 24px 12px;
+      position: relative;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-star {
+      width: 52px;
+      height: 52px;
+      position: relative;
+    }
+
+    /* SVG inline star logo */
+    .logo-svg { width: 52px; height: 52px; }
+
+    .logo-text { line-height: 1.1; }
+    .logo-text .brand { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--roxo); letter-spacing: 2px; }
+    .logo-text .sub   { font-size: 13px; color: var(--teal); font-weight: 500; letter-spacing: 1px; }
+
+    /* hamburger — mobile only */
+    .hamburger {
+      display: none;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+    .hamburger:hover { background: var(--gray-light); }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--roxo);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ---- category nav ---- */
+    .cat-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 20px 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-top: 1px solid rgba(0,180,180,0.1);
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+
+    .cat-all {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--roxo);
+      background: var(--gray-light);
+      white-space: nowrap;
+      transition: var(--transition);
+      letter-spacing: 0.5px;
+      border: 1px solid transparent;
+    }
+    .cat-all:hover { background: var(--roxo); color: var(--white); }
+
+    .cat-btn {
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-dark);
+      background: transparent;
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+    .cat-btn:hover { color: var(--teal); border-color: var(--teal); }
+    .cat-btn.active {
+      background: var(--teal);
+      color: var(--white);
+      border-color: var(--teal);
+      box-shadow: 0 4px 16px rgba(0,180,180,0.35);
+    }
+
+    /* ===================== MOBILE SIDEBAR ===================== */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30,16,85,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sidebar-overlay.open { display: block; opacity: 1; }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -280px;
+      width: 280px;
+      height: 100%;
+      background: var(--white);
+      z-index: 2001;
+      padding: 24px;
+      transition: left 0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: var(--shadow-lg);
+      overflow-y: auto;
+    }
+    .sidebar.open { left: 0; }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .sidebar-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--roxo); letter-spacing: 1px; }
+    .sidebar-close {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--gray-light);
+      color: var(--roxo);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .sidebar-close:hover { background: var(--roxo); color: var(--white); }
+
+    .sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-list li a {
+      display: block;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--gray-dark);
+      transition: var(--transition);
+    }
+    .sidebar-list li a:hover,
+    .sidebar-list li a.active {
+      background: var(--teal);
+      color: var(--white);
+      padding-left: 24px;
+    }
+
+    /* ===================== SECTION TITLE ===================== */
+    .section-hero {
+      text-align: center;
+      padding: 48px 20px 32px;
+      background: var(--white);
+      position: relative;
+    }
+    .section-hero::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--roxo-light));
+      border-radius: 99px;
+      margin: 16px auto 0;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 7vw, 72px);
+      color: var(--roxo);
+      letter-spacing: 4px;
+      line-height: 1;
+    }
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--gray);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    /* ===================== PRODUCT GRID ===================== */
+    .catalog-section {
+      background: var(--off-white);
+      padding: 0 20px 60px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ---- PRODUCT CARD ---- */
+    .product-card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,180,180,0.12);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow var(--transition), border-color var(--transition);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(0,180,180,0.4);
+    }
+
+    .card-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--roxo);
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(0,180,180,0.1);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: var(--gray-light);
+    }
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .card-img-wrap img { transform: scale(1.06); }
+
+    .card-zoom {
+      position: absolute;
+      bottom: 10px; right: 10px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      color: var(--roxo);
+      box-shadow: 0 2px 10px rgba(30,16,85,0.18);
+      transition: var(--transition);
+    }
+    .card-zoom:hover { background: var(--teal); color: var(--white); transform: scale(1.1); }
+
+    .card-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+    /* color dots */
+    .color-dots { display: flex; gap: 6px; align-items: center; }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    .dot.active { border-color: var(--roxo); transform: scale(1.25); }
+    .dot:hover { transform: scale(1.2); }
+
+    /* pricing */
+    .price-wrap { display: flex; flex-direction: column; gap: 2px; }
+    .price-original {
+      font-size: 12px;
+      color: var(--gray);
+      text-decoration: line-through;
+    }
+    .price-promo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .price-promo .scissors { color: var(--teal); font-size: 13px; }
+    .price-promo .value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      color: var(--roxo);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .price-unit {
+      font-size: 10px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* buttons */
+    .card-actions { display: flex; flex-direction: column; gap: 7px; margin-top: auto; }
+
+    .btn-buy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--roxo);
+      border: 2px solid var(--roxo);
+      background: transparent;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-buy::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--roxo);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      z-index: 0;
+    }
+    .btn-buy:hover::after { transform: translateX(0); }
+    .btn-buy:hover { color: var(--white); }
+    .btn-buy span, .btn-buy i { position: relative; z-index: 1; }
+
+    .btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 9px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: var(--green-wa);
+      color: var(--white);
+      transition: var(--transition);
+    }
+    .btn-wa:hover { filter: brightness(1.1); transform: scale(1.02); box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+
+    .btn-shopee {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 9px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #FF6B35, var(--orange-sh));
+      color: var(--white);
+      transition: var(--transition);
+    }
+    .btn-shopee:hover { filter: brightness(1.1); transform: scale(1.02); box-shadow: 0 4px 16px rgba(238,77,45,0.4); }
+
+    /* ===================== LIGHTBOX ===================== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,8,40,0.92);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-content { position: relative; max-width: 600px; width: 100%; }
+    .lightbox-content img { width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); }
+    .lightbox-close {
+      position: absolute;
+      top: -16px; right: -16px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--roxo);
+      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .lightbox-close:hover { background: var(--teal); color: var(--white); transform: rotate(90deg); }
+
+    /* ===================== FOOTER ===================== */
+    .footer {
+      background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-mid) 50%, #0D2A3D 100%);
+      color: var(--white);
+      padding: 56px 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,180,180,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: 60px; left: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-col-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--teal);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-col-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 36px; height: 2px;
+      background: var(--gold);
+      border-radius: 99px;
+    }
+
+    /* col 1 */
+    .btn-search-cat {
+      display: block;
+      padding: 12px 20px;
+      border-radius: 99px;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+      transition: var(--transition);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(4px);
+      margin-bottom: 28px;
+    }
+    .btn-search-cat:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 4px 20px rgba(0,180,180,0.4);
+      transform: translateY(-2px);
+    }
+
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo .brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); letter-spacing: 2px; }
+    .footer-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 500; letter-spacing: 1px; }
+
+    /* col 2 */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .contact-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+    .contact-list li i { color: var(--teal); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+
+    /* col 3 — social */
+    .social-icons { display: flex; gap: 16px; align-items: center; }
+    .social-icon {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      color: var(--white);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .social-icon:hover { transform: translateY(-4px) scale(1.1); }
+    .social-icon:hover::before { opacity: 1; }
+
+    .si-wa  { background: var(--green-wa); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+    .si-wa:hover  { box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+
+    .si-ig  { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 16px rgba(131,58,180,0.3); }
+    .si-ig:hover  { box-shadow: 0 8px 28px rgba(131,58,180,0.55); }
+
+    .si-sh  { background: linear-gradient(135deg, #FF6B35, var(--orange-sh)); box-shadow: 0 4px 16px rgba(238,77,45,0.3); }
+    .si-sh:hover  { box-shadow: 0 8px 28px rgba(238,77,45,0.55); }
+
+    /* copyright bar */
+    .footer-copy {
+      text-align: center;
+      padding: 24px 20px;
+      margin-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-copy span { color: var(--teal); }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .cat-nav { display: none; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .section-title { font-size: 42px; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; max-width: 320px; }
+    }
+
+    /* ===================== SHIMMER UTILITY ===================== */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    .shimmer-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--teal) 50%, transparent 100%);
+      background-size: 200% auto;
+      animation: shimmer 2.5s linear infinite;
+      border-radius: 99px;
+      margin: 0 auto 0;
+    }
+
+    /* fade-in stagger helper */
+    .product-card { transition-delay: 0ms; }
+
+    /* ===================== EMPTY STATE ===================== */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray);
+      font-size: 15px;
+    }
+    .empty-state i { font-size: 40px; margin-bottom: 12px; color: var(--teal); opacity: 0.5; }
+  </style>
+</head>
+<body>
+
+<!-- ===================== SIDEBAR (mobile) ===================== -->
+<div class="sidebar-overlay" id="overlay"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Categorias</span>
+    <button class="sidebar-close" id="sidebarClose"><i class="fa fa-times"></i></button>
+  </div>
+  <ul class="sidebar-list" id="sidebarList">
+    <li><a href="#" data-cat="todas" class="active">Todas as Categorias</a></li>
+    <li><a href="#" data-cat="banquetas">Banquetas</a></li>
+    <li><a href="#" data-cat="cadeiras">Cadeiras</a></li>
+    <li><a href="#" data-cat="conjuntos">Conjuntos</a></li>
+    <li><a href="#" data-cat="mesas">Mesas</a></li>
+    <li><a href="#" data-cat="poltronas">Poltronas</a></li>
+    <li><a href="#" data-cat="puffs">Puff's</a></li>
+    <li><a href="#" data-cat="chaise">Chaise</a></li>
+    <li><a href="#" data-cat="espreguicadeiras">Espreguiçadeiras</a></li>
+  </ul>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header">
+  <div class="header-top">
+    <!-- hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- logo -->
+    <div class="logo-wrap">
+      <svg class="logo-svg" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- star shape -->
+        <polygon points="26,2 31,18 48,18 34,28 39,44 26,34 13,44 18,28 4,18 21,18" fill="#1E1055" opacity="0.15"/>
+        <polygon points="26,5 30,16 43,16 33,24 37,37 26,30 15,37 19,24 9,16 22,16" fill="#2D1B69"/>
+        <!-- globe grid overlay -->
+        <circle cx="26" cy="26" r="10" fill="none" stroke="#00B4B4" stroke-width="1.8"/>
+        <ellipse cx="26" cy="26" rx="5.5" ry="10" fill="none" stroke="#00B4B4" stroke-width="1.2"/>
+        <line x1="16" y1="26" x2="36" y2="26" stroke="#00B4B4" stroke-width="1.2"/>
+        <line x1="26" y1="16" x2="26" y2="36" stroke="#00B4B4" stroke-width="1.2"/>
+      </svg>
+      <div class="logo-text">
+        <div class="brand">Elegance</div>
+        <div class="sub">Lar &amp; Cia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- category nav -->
+  <nav class="cat-nav" id="catNav">
+    <button class="cat-all" data-cat="todas">
+      <i class="fa fa-grip-horizontal"></i>
+      <span>TODAS AS<br>CATEGORIAS</span>
+    </button>
+    <button class="cat-btn active" data-cat="banquetas">Banquetas</button>
+    <button class="cat-btn" data-cat="cadeiras">Cadeiras</button>
+    <button class="cat-btn" data-cat="conjuntos">Conjuntos</button>
+    <button class="cat-btn" data-cat="mesas">Mesas</button>
+    <button class="cat-btn" data-cat="poltronas">Poltronas</button>
+    <button class="cat-btn" data-cat="puffs">Puff's</button>
+    <button class="cat-btn" data-cat="chaise">Chaise</button>
+    <button class="cat-btn" data-cat="espreguicadeiras">Espreguiçadeiras</button>
+  </nav>
+</header>
+
+<!-- ===================== CATALOG ===================== -->
+<section class="section-hero" id="catalogHero">
+  <p class="section-subtitle">Coleção Premium</p>
+  <h1 class="section-title" id="activeTitle">Banquetas</h1>
+  <div class="shimmer-line" style="width:80px;"></div>
+</section>
+
+<section class="catalog-section">
+  <div class="product-grid" id="productGrid">
+    <!-- cards inserted by JS -->
+  </div>
+</section>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="Produto ampliado"/>
+    <button class="lightbox-close" id="lightboxClose"><i class="fa fa-times"></i></button>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="footer-grid">
+
+    <!-- col 1 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Busque pela Categoria</h3>
+      <a href="#catNav" class="btn-search-cat">
+        <i class="fa fa-search"></i>&nbsp; Busque o produto desejado
+      </a>
+      <div class="footer-logo">
+        <svg width="40" height="40" viewBox="0 0 52 52" fill="none">
+          <polygon points="26,5 30,16 43,16 33,24 37,37 26,30 15,37 19,24 9,16 22,16" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="26" cy="26" r="10" fill="none" stroke="#00B4B4" stroke-width="1.8"/>
+          <ellipse cx="26" cy="26" rx="5.5" ry="10" fill="none" stroke="#00B4B4" stroke-width="1.2"/>
+          <line x1="16" y1="26" x2="36" y2="26" stroke="#00B4B4" stroke-width="1.2"/>
+          <line x1="26" y1="16" x2="26" y2="36" stroke="#00B4B4" stroke-width="1.2"/>
+        </svg>
+        <div>
+          <div class="brand">Elegance</div>
+          <div class="sub">Lar &amp; Cia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- col 2 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Contato</h3>
+      <ul class="contact-list">
+        <li><i class="fa fa-phone"></i> (19) 99774-2852</li>
+        <li><i class="fa fa-envelope"></i> contato@elegancelarecia.com.br</li>
+        <li><i class="fa fa-map-marker-alt"></i> Rua Francisco Bacarin, Nº 51 – Porto Ferreira – SP</li>
+      </ul>
+    </div>
+
+    <!-- col 3 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Redes Sociais</h3>
+      <div class="social-icons">
+        <!-- SUBSTITUA os href pelos links reais -->
+        <a href="https://wa.me/5519997742852" target="_blank" rel="noopener" class="social-icon si-wa" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-ig" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://shopee.com.br/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-sh" aria-label="Shopee">
+          <i class="fas fa-shopping-bag"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">
+    © Copyright &mdash; <span>Elegance Lar &amp; Cia</span> &mdash; Móveis em Alumínio
+  </div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+  /* ---- DATA: produtos ----
+     Substitua as src das imagens pelos caminhos reais.
+     colors: array de objetos { hex, img } — cada dot troca a imagem exibida.
+     whatsapp/shopee: links reais de cada produto.
+  */
+  const PRODUCTS = [
+    // BANQUETAS
+    {
+      id: 1, cat: 'banquetas', name: 'Banqueta Corda',
+      img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#3a5a40', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+        { hex: '#b5838d', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#6d6875', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 327,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta%20Corda',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 2, cat: 'banquetas', name: 'Banqueta',
+      img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#d4a574', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#2c3e50', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+        { hex: '#8b7355', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+        { hex: '#c0c0c0', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 327,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 3, cat: 'banquetas', name: 'Banqueta Quadrada',
+      img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+        { hex: '#6b8cba', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+        { hex: '#a0522d', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#2d5a27', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 327,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta%20Quadrada',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 4, cat: 'banquetas', name: 'Banqueta Quadrada',
+      img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#2c2c2c', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+        { hex: '#8b7355', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+        { hex: '#3a5a40', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 380,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta%20Quadrada',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 5, cat: 'banquetas', name: 'Banqueta',
+      img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#5c3d2e', img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop' },
+        { hex: '#d4a574', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#2c3e50', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+        { hex: '#c0c0c0', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 327,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 6, cat: 'banquetas', name: 'Banqueta',
+      img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#4a2c2a', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop' },
+        { hex: '#8b7355', img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 327,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 7, cat: 'banquetas', name: 'Banqueta Itália',
+      img: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#c0392b', img: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop' },
+        { hex: '#2c3e50', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+        { hex: '#3a5a40', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 450,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta%20It%C3%A1lia',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 8, cat: 'banquetas', name: 'Banqueta Itália',
+      img: 'https://images.unsplash.com/photo-1549497538-303791108f95?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1549497538-303791108f95?w=400&h=400&fit=crop' },
+        { hex: '#c0392b', img: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop' },
+        { hex: '#8b7355', img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop' },
+        { hex: '#d4a574', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 450,00', promoPrice: 'R$ 400,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta%20It%C3%A1lia',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // CADEIRAS
+    {
+      id: 9, cat: 'cadeiras', name: 'Cadeira Alumínio',
+      img: 'https://images.unsplash.com/photo-1517705008128-361805f42e86?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#c0c0c0', img: 'https://images.unsplash.com/photo-1517705008128-361805f42e86?w=400&h=400&fit=crop' },
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#3a5a40', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 520,00', promoPrice: 'R$ 389,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Cadeira%20Alum%C3%ADnio',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    {
+      id: 10, cat: 'cadeiras', name: 'Cadeira Luxo',
+      img: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#8b7355', img: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=400&h=400&fit=crop' },
+        { hex: '#2c3e50', img: 'https://images.unsplash.com/photo-1517705008128-361805f42e86?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#3a5a40', img: 'https://images.unsplash.com/photo-1549497538-303791108f95?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 580,00', promoPrice: 'R$ 420,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Cadeira%20Luxo',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // CONJUNTOS
+    {
+      id: 11, cat: 'conjuntos', name: 'Conjunto Garden',
+      img: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#3a5a40', img: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=400&fit=crop' },
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1549497538-303791108f95?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 1.800,00', promoPrice: 'R$ 1.350,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20no%20Conjunto%20Garden',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // MESAS
+    {
+      id: 12, cat: 'mesas', name: 'Mesa de Centro',
+      img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#c0c0c0', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 850,00', promoPrice: 'R$ 620,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Mesa%20de%20Centro',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // POLTRONAS
+    {
+      id: 13, cat: 'poltronas', name: 'Poltrona Elegance',
+      img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#c0392b', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop' },
+        { hex: '#2c3e50', img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop' },
+        { hex: '#c9a84c', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 750,00', promoPrice: 'R$ 549,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Poltrona%20Elegance',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // PUFFS
+    {
+      id: 14, cat: 'puffs', name: "Puff Redondo",
+      img: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#c0392b', img: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop' },
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1549497538-303791108f95?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 350,00', promoPrice: 'R$ 249,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20no%20Puff%20Redondo',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // CHAISE
+    {
+      id: 15, cat: 'chaise', name: 'Chaise Longue',
+      img: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#8b7355', img: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=400&fit=crop' },
+        { hex: '#c0392b', img: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 980,00', promoPrice: 'R$ 749,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20no%20Chaise%20Longue',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+    // ESPREGUIÇADEIRAS
+    {
+      id: 16, cat: 'espreguicadeiras', name: 'Espreguiçadeira Pool',
+      img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop',
+      colors: [
+        { hex: '#1a1a2e', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop' },
+        { hex: '#c0c0c0', img: 'https://images.unsplash.com/photo-1517705008128-361805f42e86?w=400&h=400&fit=crop' },
+      ],
+      originalPrice: 'R$ 680,00', promoPrice: 'R$ 499,00',
+      whatsapp: 'https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Espreguicadeira%20Pool',
+      shopee: 'https://shopee.com.br/SEU_PERFIL',
+    },
+  ];
+
+  const CATEGORY_LABELS = {
+    todas: 'Todos os Produtos',
+    banquetas: 'Banquetas',
+    cadeiras: 'Cadeiras',
+    conjuntos: 'Conjuntos',
+    mesas: 'Mesas',
+    poltronas: 'Poltronas',
+    puffs: "Puff's",
+    chaise: 'Chaise',
+    espreguicadeiras: 'Espreguiçadeiras',
+  };
+
+  let activeCat = 'banquetas';
+
+  /* ---- BUILD CARD HTML ---- */
+  function buildCard(p) {
+    const dots = p.colors.map((c, i) =>
+      `<span class="dot${i===0?' active':''}" style="background:${c.hex}" data-idx="${i}" data-pid="${p.id}"></span>`
+    ).join('');
+
+    return `
+    <div class="product-card" data-cat="${p.cat}" data-pid="${p.id}">
+      <div class="card-name">${p.name}</div>
+      <div class="card-img-wrap">
+        <img src="${p.img}" alt="${p.name}" id="img-${p.id}" loading="lazy"/>
+        <button class="card-zoom" data-img="${p.img}" data-pid="${p.id}" aria-label="Ampliar">
+          <i class="fa fa-expand-alt"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="color-dots">${dots}</div>
+        <div class="price-wrap">
+          <span class="price-original">${p.originalPrice}</span>
+          <div class="price-promo">
+            <i class="fa fa-scissors scissors"></i>
+            <span class="value">${p.promoPrice}</span>
+          </div>
+          <span class="price-unit">cada</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn-buy">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Compre Agora</span>
+          </button>
+          <a href="${p.whatsapp}" target="_blank" rel="noopener" class="btn-wa">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="${p.shopee}" target="_blank" rel="noopener" class="btn-shopee">
+            <i class="fas fa-shopping-bag"></i> Shopee
+          </a>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  /* ---- RENDER ---- */
+  function renderProducts(cat) {
+    const grid = document.getElementById('productGrid');
+    const filtered = cat === 'todas' ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
+    document.getElementById('activeTitle').textContent = CATEGORY_LABELS[cat] || cat;
+
+    grid.innerHTML = filtered.length
+      ? filtered.map(buildCard).join('')
+      : `<div class="empty-state"><i class="fa fa-couch"></i><p>Nenhum produto nesta categoria ainda.</p></div>`;
+
+    /* stagger animation */
+    const cards = grid.querySelectorAll('.product-card');
+    cards.forEach((c, i) => {
+      c.style.transitionDelay = `${i * 60}ms`;
+      requestAnimationFrame(() => requestAnimationFrame(() => c.classList.add('visible')));
+    });
+
+    bindCardEvents();
+  }
+
+  /* ---- CARD EVENTS ---- */
+  function bindCardEvents() {
+    /* color dots */
+    document.querySelectorAll('.dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const pid = +dot.dataset.pid;
+        const idx = +dot.dataset.idx;
+        const product = PRODUCTS.find(p => p.id === pid);
+        if (!product) return;
+        const img = document.getElementById('img-' + pid);
+        if (img) { img.src = product.colors[idx].img; }
+        /* update zoom button */
+        const zoomBtn = document.querySelector(`.card-zoom[data-pid="${pid}"]`);
+        if (zoomBtn) zoomBtn.dataset.img = product.colors[idx].img;
+        /* active dot */
+        dot.closest('.color-dots').querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+      });
+    });
+
+    /* zoom / lightbox */
+    document.querySelectorAll('.card-zoom').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('lightboxImg').src = btn.dataset.img;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+  }
+
+  /* ---- CATEGORY SWITCH ---- */
+  function setCategory(cat) {
+    activeCat = cat;
+    /* desktop nav */
+    document.querySelectorAll('.cat-btn, .cat-all').forEach(b => b.classList.remove('active'));
+    const activeBtn = document.querySelector(`[data-cat="${cat}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+    /* sidebar */
+    document.querySelectorAll('#sidebarList a').forEach(a => {
+      a.classList.toggle('active', a.dataset.cat === cat);
+    });
+    renderProducts(cat);
+  }
+
+  /* ---- NAV LISTENERS ---- */
+  document.querySelectorAll('.cat-btn, .cat-all').forEach(btn => {
+    btn.addEventListener('click', () => setCategory(btn.dataset.cat));
+  });
+  document.querySelectorAll('#sidebarList a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      setCategory(a.dataset.cat);
+      closeSidebar();
+    });
+  });
+
+  /* ---- HAMBURGER / SIDEBAR ---- */
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  const sidebarClose = document.getElementById('sidebarClose');
+
+  function openSidebar()  { sidebar.classList.add('open'); overlay.classList.add('open'); hamburger.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow=''; }
+
+  hamburger.addEventListener('click', () => sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
+  overlay.addEventListener('click', closeSidebar);
+  sidebarClose.addEventListener('click', closeSidebar);
+
+  /* ---- LIGHTBOX ---- */
+  document.getElementById('lightboxClose').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
+  document.getElementById('lightbox').addEventListener('click', e => { if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('open'); });
+
+  /* ---- HEADER SHADOW ON SCROLL ---- */
+  window.addEventListener('scroll', () => {
+    document.querySelector('.header').style.boxShadow =
+      window.scrollY > 10 ? '0 4px 24px rgba(30,16,85,0.12)' : '0 2px 20px rgba(30,16,85,0.07)';
+  });
+
+  /* ---- INIT ---- */
+  renderProducts(activeCat);
+</script>
+</body>
+</html>
