@@ -1,0 +1,693 @@
+/* =============================================
+   RESET & BASE
+   Zera margens, paddings e define box-sizing
+============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #2c2c2c;
+  background: #fff;
+}
+
+a    { text-decoration: none; color: inherit; }
+img  { max-width: 100%; display: block; }
+ul   { list-style: none; }
+
+
+/* =============================================
+   VARIÁVEIS CSS GLOBAIS
+   Cores, bordas e raios reutilizados no projeto
+============================================= */
+:root {
+  --teal:       #00b8c4;   /* cor principal (turquesa) */
+  --navy:       #1a2744;   /* cor secundária (azul escuro) */
+  --light-gray: #f5f5f5;   /* fundo das seções alternadas */
+  --border:     #e0e0e0;   /* cor de bordas sutis */
+  --text-muted: #666;      /* texto de apoio / cinza */
+  --radius:     8px;       /* arredondamento padrão */
+  --header-h:   110px;     /* altura total do header fixo */
+}
+
+
+/* =============================================
+   UTILITÁRIOS
+============================================= */
+.teal { color: var(--teal); }
+
+
+/* =============================================
+   HEADER FIXO
+   Logotipo centralizado no topo
+   Menu/navegação logo abaixo
+============================================= */
+#header {
+  position: fixed;       /* fica fixo ao rolar a página */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column; /* logotipo em cima, nav embaixo */
+  align-items: center;
+}
+
+/* ---- LOGOTIPO ---- */
+.logo-img {
+  height: 160px;      /* ajuste a altura conforme sua imagem */
+  width: auto;       /* mantém a proporção original */
+  object-fit: contain;
+}
+
+/* ---- BARRA DE NAVEGAÇÃO (abaixo do logotipo) ---- */
+#navbar {
+  width: 100%;
+  background: var(--navy);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Lista de links do menu (desktop) */
+.nav-links {
+  display: flex;
+  gap: 0;
+}
+
+.nav-links li a {
+  display: block;
+  padding: 13px 26px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.09em;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #fff;
+  border-bottom-color: var(--teal);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ---- BOTÃO HAMBURGUER (oculto no desktop) ---- */
+.hamburger {
+  display: none;               /* visível apenas em mobile/tablet */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* As 3 barras do ícone hamburguer */
+.hamburger .bar {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+/* Animação: hamburguer → X ao abrir o menu */
+.hamburger.open .bar:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+.hamburger.open .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open .bar:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+
+
+/* =============================================
+   ESPAÇAMENTO DO BODY (compensa header fixo)
+============================================= */
+body {
+  padding-top: var(--header-h);
+}
+
+
+/* =============================================
+   CABEÇALHO DE SEÇÃO (compartilhado)
+============================================= */
+.section-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.section-header h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.section-header p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+
+/* =============================================
+   HERO — CARROSSEL PRINCIPAL
+============================================= */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  background: #d9cfc4;
+}
+
+/* Trilha que desliza horizontalmente */
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* Cada slide ocupa 100% da largura */
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cores de fundo de cada slide */
+.slide-1 { background: linear-gradient(135deg, #e8d5c4 0%, #c4a882 100%); }
+.slide-2 { background: linear-gradient(135deg, #c4d8e2 0%, #7aabb8 100%); }
+.slide-3 { background: linear-gradient(135deg, #d5e8c4 0%, #82a85a 100%); }
+
+/* Emoji/ícone do móvel em cada slide */
+.slide-furniture {
+  font-size: 7rem;
+  user-select: none;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.18));
+  animation: floatAnim 3s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Setas prev/next do carrossel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.carousel-btn:hover  { background: #fff; transform: translateY(-50%) scale(1.08); }
+.carousel-btn.prev   { left: 18px; }
+.carousel-btn.next   { right: 18px; }
+
+/* Dots indicadores de slide */
+.carousel-dots {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.dot.active { background: #fff; transform: scale(1.25); }
+
+
+/* =============================================
+   SEÇÃO: PRINCIPAIS CATEGORIAS
+============================================= */
+.categorias {
+  padding: 60px 80px;
+  background: #fff;
+}
+
+/* Grade 4 colunas × 2 linhas */
+.categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+/* Card individual de categoria */
+.categoria-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  background: #fff;
+}
+
+.categoria-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 16px rgba(0, 184, 196, 0.12);
+  transform: translateY(-2px);
+}
+
+.categoria-card span {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.categoria-card img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  opacity: 0.82;
+}
+
+/* Botão principal turquesa */
+.btn-wrapper { display: flex; justify-content: center; margin-top: 10px; }
+
+.btn-teal {
+  background: var(--teal);
+  color: #fff;
+  padding: 14px 40px;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0, 184, 196, 0.25);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-teal:hover {
+  background: #009eaa;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 184, 196, 0.35);
+}
+
+
+/* =============================================
+   SEÇÃO: QUEM NÓS SOMOS
+============================================= */
+.sobre {
+  padding: 60px 80px;
+  background: var(--light-gray);
+}
+
+/* Título editorial grande */
+.quem-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 44px;
+}
+
+/* Layout de 2 colunas: imagens | texto */
+.sobre-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Bloco de imagens sobrepostas */
+.sobre-images {
+  position: relative;
+  height: 360px;
+}
+
+.img-top, .img-bottom {
+  position: absolute;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.img-top {
+  width: 72%;
+  height: 55%;
+  top: 0; left: 0;
+  background: linear-gradient(135deg, #b0c4d8 0%, #7a9ab8 100%);
+}
+
+.img-bottom {
+  width: 65%;
+  height: 50%;
+  bottom: 0; right: 0;
+  background: linear-gradient(135deg, #6a8faa 0%, #4a6f8a 100%);
+}
+
+/* Bloco de texto (3 itens com separadores) */
+.sobre-content { display: flex; flex-direction: column; }
+
+.sobre-item h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.sobre-item p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.sobre-item hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+
+/* =============================================
+   SEÇÃO: NOSSA LOCALIZAÇÃO
+============================================= */
+.localizacao {
+  padding: 60px 80px;
+  background: #fff;
+}
+
+/* Container do iframe do mapa */
+.mapa-container {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 28px;
+}
+
+/* Informações de endereço / telefone / horário */
+.contact-info { display: flex; flex-direction: column; gap: 10px; }
+
+.contact-info p {
+  font-size: 0.9rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info p i { width: 18px; text-align: center; }
+
+
+/* =============================================
+   SEÇÃO: AVALIAÇÕES DOS CLIENTES
+============================================= */
+.avaliacoes {
+  padding: 60px 80px;
+  background: var(--light-gray);
+}
+
+/* Wrapper com overflow oculto (carrossel) */
+.reviews-wrapper { overflow: hidden; }
+
+/* Trilha deslizante dos cards */
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* Card individual de avaliação */
+.review-card {
+  min-width: calc(50% - 12px);
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  padding-bottom: 16px;
+}
+
+/* Imagem de capa do card */
+.review-img   { width: 100%; height: 160px; background: linear-gradient(135deg, #c4a882, #8a6642); }
+.review-img-2 { background: linear-gradient(135deg, #7aabb8, #4a7888); }
+
+.review-card p {
+  padding: 14px 16px 10px;
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Rodapé do card: cidade + data */
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.reviewer-date { font-weight: 400; color: var(--text-muted); }
+
+/* Controles: dots + setas */
+.review-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.review-dots { display: flex; gap: 8px; }
+
+.rdot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.rdot.active { background: var(--teal); transform: scale(1.25); }
+
+.review-arrows { display: flex; gap: 10px; }
+
+.review-arrow {
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.review-arrow:hover { background: #009eaa; transform: scale(1.1); }
+
+
+/* =============================================
+   RODAPÉ (FOOTER)
+============================================= */
+footer {
+  background: #fff;
+  border-top: 2px solid var(--border);
+  padding: 44px 80px 0;
+}
+
+/* 3 colunas: busca | contato | redes sociais */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 36px;
+}
+
+.footer-col h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.footer-col p {
+  font-size: 0.88rem;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* Botão de busca do rodapé */
+.btn-search {
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.2s;
+}
+
+.btn-search:hover { background: #263a6a; }
+
+/* Mini logotipo no rodapé */
+.footer-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* Ícones de redes sociais */
+.social-icons { display: flex; gap: 12px; }
+
+.social-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.social-icon:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
+
+.social-icon.whatsapp  { background: #25d366; }
+.social-icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.social-icon.shopee    { background: #ee4d2d; }
+
+/* Linha de copyright */
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 16px 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+
+/* =============================================
+   RESPONSIVIDADE — TABLET (≤ 1024px)
+============================================= */
+@media (max-width: 1024px) {
+
+  /* Reduz padding lateral das seções */
+  .categorias,
+  .sobre,
+  .localizacao,
+  .avaliacoes,
+  footer { padding-left: 28px; padding-right: 28px; }
+
+  /* Grade de categorias: 2 colunas */
+  .categorias-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Sobre: layout em coluna única */
+  .sobre-inner { grid-template-columns: 1fr; }
+  .sobre-images { height: 220px; }
+
+  /* Rodapé: 2 colunas */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  /* Mostra o botão hamburguer */
+  .hamburger { display: flex; }
+
+  /* Menu mobile: oculto por padrão, expande ao abrir */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--navy);
+    padding: 8px 0 14px;
+  }
+
+  /* Exibe o menu quando a classe .open está ativa */
+  .nav-links.open { display: flex; }
+
+  .nav-links li a {
+    padding: 13px 24px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    border-left-color: var(--teal);
+    border-bottom-color: transparent;
+  }
+
+  /* Ajusta altura da variável para o header mobile */
+  :root { --header-h: 90px; }
+}
+
+
+/* =============================================
+   RESPONSIVIDADE — MOBILE (≤ 768px)
+============================================= */
+@media (max-width: 768px) {
+
+  /* Header menor */
+  :root { --header-h: 82px; }
+
+  /* Carrossel menor */
+  .hero-carousel { height: 220px; }
+  .slide-furniture { font-size: 4rem; }
+
+  /* Cards de avaliação: 1 por vez */
+  .review-card { min-width: 100%; }
+
+  /* Rodapé: coluna única */
+  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  /* Título editorial menor */
+  .quem-title { font-size: 1.9rem; }
+
+  /* Logo um pouco menor */
+  .logo-title { font-size: 1.05rem; }
+}
