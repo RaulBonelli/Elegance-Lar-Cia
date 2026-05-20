@@ -1,0 +1,769 @@
+/* VARIÁVEIS DE COR E FONTE */
+:root {
+  --navy:   #1a2d5a; /* azul escuro — cor principal da marca */
+  --teal:   #3abfbf; /* verde-água — cor de destaque */
+  --gold:   #c9a84c; /* dourado — reservado para uso futuro */
+  --white:  #ffffff; /* branco puro */
+  --light:  #f7f9fc; /* fundo levemente acinzentado de seções alternadas */
+  --gray:   #6b7280; /* cinza para textos secundários */
+  --text:   #1f2937; /* quase preto — texto principal */
+  --border: #e5e7eb; /* cinza claro para bordas e divisores */
+}
+
+/* RESET GERAL Por padrão, browsers adicionam margens e paddings próprios. */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Rolagem suave ao clicar nos links do menu */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif; /* fonte padrão de toda a página */
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden; /* impede barra de rolagem horizontal */
+}
+
+/* Remove sublinhado de todos os links por padrão */
+a { text-decoration: none; color: inherit; }
+
+/* Imagens nunca ultrapassam o container que as contém */
+img { display: block; max-width: 100%; }
+
+
+/* CABEÇALHO (TOPBAR) */
+.topbar {
+  background: var(--white);
+  padding: 16px 40px;       /* espaçamento interno: 16px em cima/baixo, 40px nos lados */
+  display: flex;             /* coloca filhos em linha (logo + nav + hamburger) */
+  align-items: center;       /* alinha verticalmente ao centro */
+  justify-content: space-between; /* empurra logo para a esquerda, hamburger para a direita */
+  border-bottom: 1px solid var(--border);
+  position: sticky;          /* gruda no topo ao rolar a página */
+  top: 0;
+  z-index: 200;              /* fica na frente de outros elementos */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); /* sombra sutil embaixo */
+}
+
+.logo-img {
+  height: 100px;
+  width: auto;
+}
+
+/* MENU DESKTOP */
+.desktop-nav {
+  display: flex;
+  gap: 36px; /* espaço entre os links */
+}
+
+.desktop-nav a {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--navy);
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent; /* borda invisível (reserva espaço) */
+  transition: border-color .2s, color .2s; /* animação suave no hover */
+}
+
+/* Ao passar o mouse: muda cor e mostra a borda */
+.desktop-nav a:hover {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+  display: none;             /* escondido no desktop */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;                  
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  transition: border-color .2s, background .2s;
+  margin-left: auto;        
+}
+
+.hamburger:hover {
+  border-color: var(--teal);
+  background: rgba(58,191,191,0.06);
+}
+
+/* Cada linha do ícone ☰ */
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .35s ease, opacity .25s ease, width .25s ease;
+  transform-origin: center;
+}
+
+/* Linha 1*/
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+/* Linha 2*/
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+/* Linha 3*/
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MENU MOBILE */
+.mobile-nav {
+  position: fixed;           /* fixo na tela, não rola com o conteúdo */
+  top: 0;
+  right: -280px;             /* começa escondido fora da tela (à direita) */
+  width: 280px;
+  height: 100vh;             /* ocupa 100% da altura da tela */
+  background: var(--navy);
+  z-index: 300;
+  padding: 90px 32px 40px;  /* 90px no topo para não sobrepor o header */
+  transition: right .35s cubic-bezier(.4,0,.2,1); /* animação de deslizamento */
+  box-shadow: -4px 0 30px rgba(0,0,0,0.2);
+}
+
+/* Quando o JS adiciona a classe "open": o menu entra na tela */
+.mobile-nav.open { right: 0; }
+
+/* Links do menu mobile em coluna */
+.mobile-nav nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav nav a {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.8); /* branco levemente transparente */
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1); /* separador sutil */
+  transition: color .2s, padding-left .2s;
+}
+
+/* Remove separador do último item */
+.mobile-nav nav a:last-child { border-bottom: none; }
+
+/* Hover: muda cor e recua levemente para a direita */
+.mobile-nav nav a:hover {
+  color: var(--teal);
+  padding-left: 8px;
+}
+
+/* OVERLAY (FUNDO ESCURECIDO) */
+.overlay {
+  position: fixed;
+  inset: 0;                  /* cobre a tela toda (top/right/bottom/left: 0) */
+  background: rgba(0,0,0,0.45);
+  z-index: 250;              /* entre o conteúdo (z:200) e o menu (z:300) */
+  opacity: 0;
+  pointer-events: none;      /* invisível = não captura cliques */
+  transition: opacity .35s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;       /* visível = captura cliques (fecha o menu) */
+}
+
+
+/* HERO (CARROSSEL PRINCIPAL) */
+.hero {
+  position: relative;        /* necessário para posicionar botões e pontos */
+  overflow: hidden;          /* esconde slides fora da área visível */
+  height: 400px;             /* altura do banner — ajuste à vontade */
+  background: #222;
+}
+
+/* Container que agrupa todos os slides lado a lado */
+.slides {
+  display: flex;             /* alinha os slides em linha */
+  height: 100%;
+  transition: transform .6s ease; /* animação suave de deslizamento */
+}
+
+/* Cada slide ocupa 100% da largura (um por vez visível) */
+.slide {
+  min-width: 100%;           /* cada slide ocupa toda a largura */
+  height: 100%;
+  background-size: cover;    /* foto cobre todo o slide sem distorcer */
+  background-position: center;
+  position: relative;
+}
+
+/* Sombra gradiente sobre cada slide (melhora legibilidade) */
+.slide::after {
+  content: '';               /* pseudo-elemento precisa de content para existir */
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.45));
+}
+
+/* Fotos de cada slide */
+.slide-1 { background-image: url('fotos_carrossel/46.png'); }
+.slide-2 { background-image: url('fotos_carrossel/61.png'); }
+.slide-3 { background-image: url('fotos_carrossel/40.png'); }
+
+/* Botões de seta (‹ e ›) do carrossel */
+.carousel-btn {
+  position: absolute;        /* posicionado dentro do .hero */
+  top: 50%;
+  transform: translateY(-50%); /* centraliza verticalmente */
+  z-index: 10;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;        /* deixa o botão redondo */
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: background .2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.carousel-btn:hover { background: var(--white); }
+.carousel-btn.prev { left: 20px; }   /* seta esquerda */
+.carousel-btn.next { right: 20px; }  /* seta direita */
+
+/* Pontinhos na base do carrossel */
+.dots {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%); /* centraliza horizontalmente */
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55); /* branco semi-transparente */
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+/* Ponto ativo: mais branco e levemente maior */
+.dot.active {
+  background: var(--white);
+  transform: scale(1.2);
+}
+
+
+/* LAYOUT GERAL DAS SEÇÕES - Todas as <section> têm o mesmo padding .container limita a largura máxima e centraliza.*/
+section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
+
+.container {
+  max-width: 1100px;         /* largura máxima do conteúdo */
+  margin: 0 auto;            /* centraliza horizontalmente */
+}
+
+/* ── Título padrão das seções ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--navy);
+  display: inline;           /* permite que o <span> fique na mesma linha */
+}
+
+/* Palavra em destaque dentro do título (cor verde-água) */
+.section-title .accent {
+  color: var(--teal);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Subtítulo abaixo do título principal */
+.section-sub {
+  color: var(--gray);
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+
+/* SEÇÃO CATEGORIAS */
+#categorias { background: var(--white); }
+
+/* Grade: 4 colunas iguais (1fr = 1 fração do espaço disponível) */
+/* Para mudar o número de colunas: troque o 4 por outro número */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;       /* espaço entre os cards */
+  margin-top: 28px;
+}
+
+/* Card de cada categoria */
+.cat-card {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--navy);
+}
+
+/* Efeito hover: sobe levemente e muda a borda */
+.cat-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 18px rgba(58,191,191,0.15);
+  transform: translateY(-2px); /* sobe 2px */
+}
+
+/* Garante que o container do ícone centralize a imagem */
+.cat-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;  /* Ajuste conforme o tamanho desejado */
+  height: 50px; /* Ajuste conforme o tamanho desejado */
+  margin: 0 auto 10px; /* Centraliza e dá espaço para o texto abaixo */
+}
+
+/* Controla o tamanho da imagem dentro do ícone */
+.cat-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garante que a imagem não distorça */
+}
+
+/* Botão "Ver Todas as Categorias" */
+.btn-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  background: var(--teal);
+  color: var(--white);
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background .2s, transform .2s;
+  cursor: pointer;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+}
+
+.btn-all:hover { background: #2fa8a8; transform: translateY(-2px); }
+
+
+/* SOBRE (QUEM NÓS SOMOS) */
+#sobre { background: var(--light); } /* fundo levemente cinza para contrastar */
+
+/* Título grande com fonte serifada */
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--navy);
+  margin-bottom: 40px;
+}
+
+/* Grade de 2 colunas: fotos | textos */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* duas colunas iguais */
+  gap: 48px;
+  align-items: start; /* alinha pelo topo */
+}
+
+/* Área das fotos sobrepostas */
+.about-images {
+  position: relative; /* necessário para as fotos com position: absolute */
+  height: 380px;
+}
+
+/* Estilo comum das duas fotos */
+.about-img-1, .about-img-2 {
+  position: absolute; /* sai do fluxo normal para sobrepor */
+  border-radius: 12px;
+  object-fit: cover;  /* recorta a foto para preencher sem distorcer */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* Foto principal: maior, canto superior esquerdo */
+.about-img-1 {
+  width: 72%;
+  height: 260px;
+  top: 0;
+  left: 0;
+}
+
+/* Foto secundária: menor, sobreposta no canto inferior direito */
+.about-img-2 {
+  width: 60%;
+  height: 200px;
+  bottom: 0;
+  right: 0;
+  border: 4px solid var(--white); /* borda branca cria separação visual */
+}
+
+/* Lista de diferenciais em coluna */
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Cada item tem uma linha divisória embaixo */
+.feature-item {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Remove a linha do último item */
+.feature-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.feature-item h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7; /* espaçamento entre linhas do texto */
+}
+
+
+/* SEÇÃO LOCALIZAÇÃO */
+#localizacao { background: var(--white); }
+
+/* Título e subtítulo centralizados */
+.loc-title { text-align: center; }
+.loc-sub   { text-align: center; margin-bottom: 32px; }
+
+/* Container do mapa: tamanho fixo com cantos arredondados */
+.map-placeholder {
+  width: 100%;
+  height: 320px;
+  background: #e8edf2;  /* cor de fundo enquanto o mapa carrega */
+  border-radius: 14px;
+  overflow: hidden;     /* respeita o border-radius no iframe */
+}
+
+/* O iframe do Google Maps ocupa todo o container */
+.map-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Linhas de contato abaixo do mapa */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.contact-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+/* "Endereço:", "Telefone:", "Horários:" em destaque */
+.contact-label {
+  font-weight: 800;
+  color: var(--teal);
+  min-width: 90px; /* largura mínima para alinhar os valores */
+}
+
+.contact-val { color: var(--text); }
+
+
+/* AVALIAÇÕES */
+#avaliacoes { background: var(--light); }
+
+.reviews-title { text-align: center; margin-bottom: 36px; }
+
+/* Máscara que esconde os cards fora da área visível */
+.reviews-wrapper { overflow: hidden; }
+
+/* Trilho com todos os cards lado a lado */
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  transition: transform .5s ease; /* animação de deslizamento */
+}
+
+/* Cada card ocupa metade da largura (2 visíveis por vez no desktop) */
+/* Em mobile o CSS responsivo muda para 100% */
+.review-card {
+  min-width: calc(50% - 12px); /* 50% menos metade do gap */
+  background: var(--white);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+
+/* Foto do produto dentro do card */
+.review-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.review-text {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* Rodapé do card: nome à esquerda, data à direita */
+.review-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-name { font-weight: 800; font-size: 0.85rem; color: var(--navy); }
+.review-date { font-size: 0.78rem; color: #9ca3af; }
+
+/* Área de navegação: seta | pontos | seta */
+.reviews-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.rev-dots { display: flex; gap: 8px; }
+
+/* Pontinhos do carrossel de avaliações */
+.rev-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background .2s;
+}
+
+/* Ponto ativo fica azul */
+.rev-dot.active { background: var(--navy); }
+
+/* Botões de seta do carrossel de avaliações */
+.rev-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: background .2s, border-color .2s;
+}
+
+.rev-btn:hover { border-color: var(--navy); background: var(--light); }
+
+
+/* RODAPÉ (FOOTER) */
+footer {
+  background: var(--navy); /* fundo azul escuro */
+  color: var(--white);
+  padding: 48px 40px 24px;
+}
+
+/* Grade de 3 colunas dentro do rodapé */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto 32px;
+}
+
+/* Título de cada coluna do rodapé */
+.footer-col h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+/* Campo de busca: input + botão colados lado a lado */
+.footer-search { display: flex; }
+
+.footer-search input {
+  flex: 1; /* ocupa todo o espaço disponível */
+  padding: 10px 14px;
+  border-radius: 8px 0 0 8px; /* arredonda só os cantos da esquerda */
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  outline: none; /* remove contorno padrão do browser */
+}
+
+.footer-search button {
+  padding: 10px 16px;
+  background: var(--teal);
+  border: none;
+  border-radius: 0 8px 8px 0; /* arredonda só os cantos da direita */
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background .2s;
+}
+
+.footer-search button:hover { background: #2fa8a8; }
+
+/* Texto de contato no rodapé */
+.footer-contact p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75); /* branco levemente transparente */
+  line-height: 1.8;
+}
+
+.footer-contact a { color: var(--teal); font-weight: 700; }
+
+/* Ícones das redes sociais lado a lado */
+.social-icons {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* Cada ícone de rede social é um círculo colorido */
+.social-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
+}
+
+.social-icon:hover { transform: scale(1.12); opacity: 0.85; }
+
+/* Cores oficiais de cada rede social */
+.social-icon.whatsapp  { background: #25D366; }
+.social-icon.instagram {
+  /* Gradiente que imita o ícone original do Instagram */
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.social-icon.shopee { background: #f05123; }
+
+/* Logo menor repetido no rodapé */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.footer-logo .brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--white);
+}
+
+.footer-logo .sub {
+  font-size: 0.68rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Linha de copyright na base do rodapé */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* ANIMAÇÃO DE ENTRADA (SCROLL REVEAL) */
+.reveal {
+  opacity: 0;                      /* começa invisível */
+  transform: translateY(28px);     /* começa 28px abaixo */
+  transition: opacity .6s ease, transform .6s ease; /* animação suave */
+}
+
+/* Estado final após a animação */
+.reveal.visible {
+  opacity: 1;
+  transform: none; /* volta para a posição original */
+}
+
+
+/* RESPONSIVIDADE (MOBILE / TABLET)  */
+
+/* Telas abaixo de 900px (tablets e celulares) */
+@media (max-width: 900px) {
+  .desktop-nav { display: none; } /* esconde o menu horizontal */
+  .hamburger   { display: flex; } /* mostra o botão ☰ */
+  .topbar      { padding: 14px 20px; } /* reduz o padding lateral */
+}
+
+/* Telas abaixo de 768px (celulares) */
+@media (max-width: 768px) {
+  section { padding: 44px 20px; } /* menos espaçamento nas seções */
+
+  /* Categorias: de 4 para 2 colunas */
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Sobre: de 2 para 1 coluna (fotos em cima, texto embaixo) */
+  .about-grid   { grid-template-columns: 1fr; }
+  .about-images { height: 260px; } /* altura menor para as fotos */
+
+  /* Rodapé: de 3 para 1 coluna */
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Avaliações: um card por vez (largura total) */
+  .review-card { min-width: 100%; }
+
+  footer { padding: 40px 20px 20px; }
+}
