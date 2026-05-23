@@ -28,7 +28,7 @@
 }
 
 /* ===================== RESET ===================== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0;border: 2px black solid; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', sans-serif;
@@ -49,16 +49,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .header {
   position: sticky;
   display: flex;
-
   flex-direction: row;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,180,180,0.15);
   box-shadow: 0 2px 20px rgba(30,16,85,0.07);
-  height: 80px;
+  height: 40px;
 }
 
 .header-top {

@@ -8,6 +8,26 @@
   --gray:   #6b7280; /* cinza para textos secundários */
   --text:   #1f2937; /* quase preto — texto principal */
   --border: #e5e7eb; /* cinza claro para bordas e divisores */
+  --roxo:       #1E1055;
+  --roxo-mid:   #2D1B69;
+  --roxo-light: #4A2FA0;
+  --teal:       #00B4B4;
+  --teal-light: #00D4D4;
+  --gold:       #C9A84C;
+  --white:      #FFFFFF;
+  --off-white:  #F7F7FA;
+  --gray-light: #F0F0F5;
+  --gray:       #9999AA;
+  --gray-dark:  #444455;
+  --green-wa:   #25D366;
+  --orange-sh:  #EE4D2D;
+  --radius-sm:  10px;
+  --radius-md:  18px;
+  --radius-lg:  28px;
+  --shadow-sm:  0 2px 12px rgba(30,16,85,0.08);
+  --shadow-md:  0 8px 32px rgba(30,16,85,0.14);
+  --shadow-lg:  0 20px 60px rgba(30,16,85,0.18);
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* RESET GERAL Por padrão, browsers adicionam margens e paddings próprios. */
@@ -179,6 +199,10 @@ color: var(--light);}
 .mobile-nav nav a:hover {
   color: var(--teal);
   padding-left: 8px;
+}
+
+#categoriasLink{
+  border-bottom: 1px solid rgba(255,255,255,0.1); 
 }
 
 /* OVERLAY (FUNDO ESCURECIDO) */
@@ -614,153 +638,161 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
 
 
 /* RODAPÉ (FOOTER) */
-footer {
-  background: var(--navy); /* fundo azul escuro */
-  color: var(--white);
-  padding: 48px 40px 24px;
-}
+.footer {
+      background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-mid) 50%, #0D2A3D 100%);
+      color: var(--white);
+      padding: 56px 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,180,180,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: 60px; left: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-/* Grade de 3 colunas dentro do rodapé */
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto 32px;
-}
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-/* Título de cada coluna do rodapé */
-.footer-col h4 {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--teal);
-  margin-bottom: 18px;
-  font-weight: 800;
-}
+    .footer-col-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--teal);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-col-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 36px; height: 2px;
+      background: var(--gold);
+      border-radius: 99px;
+    }
 
-/* Campo de busca: input + botão colados lado a lado */
-.footer-search { display: flex; }
+    /* col 1 */
+    .btn-search-cat {
+      display: block;
+      padding: 12px 20px;
+      border-radius: 99px;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+      transition: var(--transition);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(4px);
+      margin-bottom: 28px;
+    }
+    .btn-search-cat:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 4px 20px rgba(0,180,180,0.4);
+      transform: translateY(-2px);
+    }
 
-.footer-search input {
-  flex: 1; /* ocupa todo o espaço disponível */
-  padding: 10px 14px;
-  border-radius: 8px 0 0 8px; /* arredonda só os cantos da esquerda */
-  border: none;
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.85rem;
-  outline: none; /* remove contorno padrão do browser */
-}
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo .brand {
+       font-family: 'Bebas Neue', sans-serif;
+       font-size: 22px;
+       color: var(--white);
+       letter-spacing: 2px;
+       }
+    .footer-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 500; letter-spacing: 1px; }
 
-.footer-search button {
-  padding: 10px 16px;
-  background: var(--teal);
-  border: none;
-  border-radius: 0 8px 8px 0; /* arredonda só os cantos da direita */
-  color: var(--white);
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.85rem;
-  transition: background .2s;
-}
+    /* col 2 */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .contact-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+    .contact-list li i { color: var(--teal); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
 
-.footer-search button:hover { background: #2fa8a8; }
+    /* col 3 — social */
+    .social-icons { display: flex; gap: 16px; align-items: center; }
+    .social-icon {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      color: var(--white);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .social-icon:hover { transform: translateY(-4px) scale(1.1); }
+    .social-icon:hover::before { opacity: 1; }
 
-/* Texto de contato no rodapé */
-.footer-contact p {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.75); /* branco levemente transparente */
-  line-height: 1.8;
-}
+    .si-wa  { background: var(--green-wa); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+    .si-wa:hover  { box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
 
-.footer-contact a { color: var(--teal); font-weight: 700; }
+    .si-ig  { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 16px rgba(131,58,180,0.3); }
+    .si-ig:hover  { box-shadow: 0 8px 28px rgba(131,58,180,0.55); }
 
-/* Ícones das redes sociais lado a lado */
-.social-icons {
-  display: flex;
-  gap: 14px;
-  margin-top: 8px;
-}
+    .si-sh  { background: linear-gradient(135deg, #FF6B35, var(--orange-sh)); box-shadow: 0 4px 16px rgba(238,77,45,0.3); }
+    .si-sh:hover  { box-shadow: 0 8px 28px rgba(238,77,45,0.55); }
 
-/* Cada ícone de rede social é um círculo colorido */
-.social-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform .2s, opacity .2s;
-}
-
-.social-icon:hover { transform: scale(1.12); opacity: 0.85; }
-
-/* Cores oficiais de cada rede social */
-.social-icon.whatsapp  { background: #25D366; }
-.social-icon.instagram {
-  /* Gradiente que imita o ícone original do Instagram */
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-.social-icon.shopee { background: #f05123; }
-
-/* Logo menor repetido no rodapé */
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 28px;
-}
-
-.footer-logo .brand {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  color: var(--white);
-}
-
-.footer-logo .sub {
-  font-size: 0.68rem;
-  color: var(--teal);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-/* Linha de copyright na base do rodapé */
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  text-align: center;
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.4);
-  max-width: 1100px;
-  margin: 0 auto;
-}
+    /* copyright bar */
+    .footer-copy {
+      text-align: center;
+      padding: 24px 20px;
+      margin-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-copy span { color: var(--teal); }
 
 
-/* ANIMAÇÃO DE ENTRADA (SCROLL REVEAL) */
-.reveal {
-  opacity: 0;                      /* começa invisível */
-  transform: translateY(28px);     /* começa 28px abaixo */
-  transition: opacity .6s ease, transform .6s ease; /* animação suave */
-}
-
-/* Estado final após a animação */
-.reveal.visible {
-  opacity: 1;
-  transform: none; /* volta para a posição original */
-}
-
-
-/* RESPONSIVIDADE (MOBILE / TABLET)  */
 
 /* Telas abaixo de 900px (tablets e celulares) */
 @media (max-width: 900px) {
   .desktop-nav { display: none; } /* esconde o menu horizontal */
   .hamburger   { display: flex; } /* mostra o botão ☰ */
   .topbar      { padding: 14px 20px; } /* reduz o padding lateral */
-}
-
+  .subCategorias {
+     display: none;
+     list-style: none;
+   }
+   .subCategorias li{
+   
+    margin-left: 20px;
+    text-decoration: none;
+    margin-bottom: 8px;
+   }
+  }
 /* Telas abaixo de 768px (celulares) */
 @media (max-width: 768px) {
   section { padding: 44px 20px; } /* menos espaçamento nas seções */

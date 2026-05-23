@@ -12,7 +12,7 @@
   <header class="topbar">
     <!-- CABEÇALHO (TOPBAR) Fixo no topo da tela, logo à esquerda, menu desktop, botão hambúrguer -->
     <div class="logo">
-      <img src="./IMG/logo_transparente.png" alt="Elegance Lar & Cia" class="logo-img" />
+      <img src="./IMG/logo_vetor_imagem.svg" alt="Elegance Lar & Cia" class="logo-img" />
     </div>
 
     <!-- MENU DESKTOP: visível apenas em telas acima de 900px (o CSS esconde abaixo disso) -->
@@ -48,7 +48,19 @@
   <div class="mobile-nav" id="mobileNav">
     <nav>
       <a href="#home"        onclick="closeMenu()">Home</a>
-      <a href="#categorias"  onclick="closeMenu()">Móveis</a>
+      <a href="#categorias" id="categoriasLink" onclick="toggleSubCategories()">Móveis</a>
+
+      <ul class="subCategorias">
+        <li><a href="./Banquetas.html" onclick="closeMenu()">Banquetas</a></li>
+        <li><a href="./Cadeiras.html"   onclick="closeMenu()">Cadeiras</a></li>
+        <li><a href="./Chaise.html"    onclick="closeMenu()">Chaises</a></li>
+        <li><a href="./Conjuntos.html" onclick="closeMenu()">Conjuntos</a></li>
+        <li><a href="./Espreguiçadeiras.html" onclick="closeMenu()">Espreguiçadeiras</a></li>
+        <li><a href="./Mesas.html"     onclick="closeMenu()">Mesas</a></li>
+        <li><a href="./Puffs.html"     onclick="closeMenu()">Puffs</a></li>
+        <li><a href="./Poltronas.html" onclick="closeMenu()">Poltronas</a></li>
+      </ul>
+
       <a href="#sobre"       onclick="closeMenu()">Sobre a Empresa</a>
       <a href="#avaliacoes"  onclick="closeMenu()">Avaliações</a>
       <a href="#localizacao" onclick="closeMenu()">Contatos</a>
@@ -102,7 +114,7 @@
       </div>
 
       <div class="reveal" style="text-align:center">
-        <button class="btn-all">Ver Todas as Categorias &nbsp;›</button>
+        <button class="btn-all">Todos os Produtos &nbsp;›</button>
       </div>
     </div>
   </section>
@@ -251,65 +263,57 @@
 </body>
 
   <!-- RODAPÉ (FOOTER) -->
-  <footer>
-    <div class="footer-grid">
-      <!-- COLUNA 1 -->
-      <div class="footer-col">
-        <h4>Busque pela Categoria</h4>
-        <div class="footer-search">
-          <input type="text" placeholder="Busque o produto desejado" />
-          <button>›</button>
-        </div>
-        <div class="footer-logo">
-          <svg width="38" height="38" viewBox="0 0 46 46" fill="none">
-            <circle cx="23" cy="23" r="22" fill="#3abfbf" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-            <circle cx="23" cy="23" r="5" fill="#fff"/>
-            <line x1="23" y1="2"  x2="23" y2="11" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="23" y1="35" x2="23" y2="44" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="2"  y1="23" x2="11" y2="23" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="35" y1="23" x2="44" y2="23" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-          <div>
-            <div class="brand">Elegance</div>
-            <div class="sub">Lar &amp; Cia</div>
-          </div>
+<footer class="footer">
+  <div class="footer-grid">
+
+    <!-- col 1 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Busque pela Categoria</h3>
+      <a href="#catNav" class="btn-search-cat">
+        <i class="fa fa-search"></i>&nbsp; Busque o produto desejado
+      </a>
+      <div class="footer-logo">
+        <img src="./IMG/logo_vetor_imagem.svg" alt="Elegance Lar & Cia" class="footer-logo-img" width="150" height="150" />
+        <div>
+          <div class="brand">Elegance</div>
+          <div class="sub">Lar &amp; Cia</div>
         </div>
       </div>
-
-      <!-- COLUNA 2 -->
-      <div class="footer-col footer-contact">
-        <h4>Contato</h4>
-        <p>
-          <a href="tel:+5519997742852">(19) 99774-2852</a><br/><br/>
-          Rua Francisco Bacarin, Nº 51 –<br/>
-          Porto Ferreira – SP
-        </p>
-      </div>
-
-      <!-- COLUNA 3 -->
-      <!-- Para ativar os links: troque href="#" pelo link real -->
-      <div class="footer-col">
-        <h4>Redes Sociais</h4>
-        <div class="social-icons">
-          <a href="#" class="social-icon whatsapp" title="WhatsApp">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-          </a>
-          <a href="#" class="social-icon instagram" title="Instagram">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="#" class="social-icon shopee" title="Shopee">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M12 2C9.243 2 7 4.243 7 7H5a1 1 0 0 0-1 1l-1 13a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1L20 8a1 1 0 0 0-1-1h-2c0-2.757-2.243-5-5-5zm0 2c1.654 0 3 1.346 3 3H9c0-1.654 1.346-3 3-3zm1 9a1 1 0 0 1-2 0v-1a1 1 0 0 1 2 0v1z"/></svg>
-          </a>
-        </div>
-      </div>
-
     </div>
 
-    <!-- Linha de copyright no fundo da página -->
-    <div class="footer-bottom">
-      © Copyright – Elegance Lar &amp; Cia – Móveis em Alumínio
+    <!-- col 2 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Contato</h3>
+      <ul class="contact-list">
+        <li><i class="fa fa-phone"></i> (19) 99774-2852</li>
+        <li><i class="fa fa-envelope"></i> contato@elegancelarecia.com.br</li>
+        <li><i class="fa fa-map-marker-alt"></i> Rua Francisco Bacarin, Nº 51 – Porto Ferreira – SP</li>
+      </ul>
     </div>
-  </footer>
+
+    <!-- col 3 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Redes Sociais</h3>
+      <div class="social-icons">
+        <!-- SUBSTITUA os href pelos links reais -->
+        <a href="https://wa.me/5519997742852" target="_blank" rel="noopener" class="social-icon si-wa" aria-label="WhatsApp" >
+          <i class="fab fa-whatsapp"><img src="./IMG/1.png" alt="" srcset="" width="30" height="30"> </i>
+        </a>
+        <a href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-ig" aria-label="Instagram">
+          <i class="fab fa-instagram"><img src="./IMG/instagram1.png" alt="instagram" srcset="" width="30" height="30"></i>
+        </a>
+        <a href="https://shopee.com.br/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-sh" aria-label="Shopee">
+          <i class="fas fa-shopping-bag"><img src="./IMG/5.png" alt="shopee" srcset="" width="40" height="40"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">
+    © Copyright &mdash; <span>Elegance Lar &amp; Cia</span> &mdash; Móveis em Alumínio
+  </div>
+</footer>
 
   <!-- Liga este HTML ao arquivo JavaScript -->
   <script src="./JS/script_index.js"></script>

@@ -57,7 +57,7 @@ setInterval(() => moveSlide(1), 4500);
    CARROSSEL DE AVALIAÇÕES
 
    Mesma lógica do hero, mas com dois cards visíveis por vez
-   no desktop. Em mobile mostra um de cada vez.
+   no desktop. Em funle mostra um de cada vez.
    O offset é calculado diferente: no desktop move 50% por slide,
    no mobile move 100%.
 ════════════════════════════════════════════════════════ */
@@ -228,3 +228,11 @@ const navObserver = new IntersectionObserver(
 
 // Começa a observar cada seção
 sections.forEach(section => navObserver.observe(section));
+
+function toggleSubCategories() {
+  const subCategories = document.querySelector('.subCategorias');
+  const categories = document.getElementById('categoriasLink');
+
+  categories.style.borderBottom === 'none'
+  subCategories.style.display = subCategories.style.display === 'block' ? 'none' : 'block';
+}
