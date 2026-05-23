@@ -90,10 +90,6 @@
   nextBtn.addEventListener('click', () => { next(); resetAutoplay(); });
   prevBtn.addEventListener('click', () => { prev(); resetAutoplay(); });
 
-  /* Eventos dos dots */
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => { goTo(i); resetAutoplay(); });
-  });
 
   /* Suporte a swipe (touch) */
   let startX = 0;
@@ -179,7 +175,6 @@
 
   sections.forEach(sec => observer.observe(sec));
 })();
-
 
 /* =============================================
    5. SCROLL REVEAL
