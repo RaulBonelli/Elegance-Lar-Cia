@@ -172,8 +172,8 @@
     .cat-nav {
       display: flex;
       align-items: center;
-      gap: 4px;
-      padding: 0 20px 14px;
+      gap: 20px;
+      padding: 0 15px 15px;
       overflow-x: auto;
       scrollbar-width: none;
       border-top: 1px solid rgba(0, 180, 180, 0.1);
@@ -369,7 +369,7 @@
       margin: 0 auto;
     }
 
-    /* ---- PRODUCT CARD ---- */
+    /* PRODUCT CARD */
     .product-card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px);
@@ -530,49 +530,7 @@
       flex-direction: column;
       gap: 7px;
       margin-top: auto;
-    }
-
-    .btn-buy {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      padding: 9px 14px;
-      border-radius: 99px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--roxo);
-      border: 2px solid var(--roxo);
-      background: transparent;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-buy::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--roxo);
-      transform: translateX(-101%);
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 0;
-    }
-
-    .btn-buy:hover::after {
-      transform: translateX(0);
-    }
-
-    .btn-buy:hover {
-      color: var(--white);
-    }
-
-    .btn-buy span,
-    .btn-buy i {
-      position: relative;
-      z-index: 1;
+      margin-bottom: 25px;
     }
 
     .btn-wa {

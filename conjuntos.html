@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conjuntos — Elegance Lar & Cia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style_categoria.css" />
+  <link rel="icon" type="image/svg+xml" href="IMG/logo_vetor_imagem.svg">
+</head>
+
+
+<header class="header">
+  <div class="header-top">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="cat-nav" id="catNav">
+      <a href="banquetas.html"><button class="cat-btn" data-cat="banquetas" >Banquetas</button></a>
+      <a href="cadeiras.html"><button class="cat-btn" data-cat="cadeiras">Cadeiras</button></a>
+      <a href="chaises.html"><button class="cat-btn" data-cat="chaises">Chaises</button></a>
+      <a href="conjuntos.html"><button class="cat-btn active" data-cat="conjuntos">Conjuntos</button></a>
+      <a href="espreguicadeiras.html"><button class="cat-btn" data-cat="espreguicadeiras">Espreguiçadeiras</button></a>
+      <a href="mesas.html"><button class="cat-btn" data-cat="mesas">Mesas</button></a>
+      <a href="ninhos.html"><button class="cat-btn" data-cat="ninhos">Ninhos</button></a>
+      <a href="ombrelones.html"><button class="cat-btn" data-cat="ombrelones">Ombrelones</button></a>
+      <a href="poltronas.html"><button class="cat-btn" data-cat="poltronas">Poltronas</button></a>
+      <a href="puffs.html"><button class="cat-btn" data-cat="puffs">Puff's</button></a>
+      <a href="sofas.html"><button class="cat-btn" data-cat="sofas">Sofás</button></a>
+    </nav>
+</header>
+
+<body>
+  <div class="sidebar-overlay" id="overlay"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Categorias</span>
+      <button class="sidebar-close" id="sidebarClose"><i class="fa fa-times"></i></button>
+    </div>
+    <ul class="sidebar-list" id="sidebarList">
+      <li><a href="banquetas.html" data-cat="banquetas">Banquetas</a></li>
+      <li><a href="cadeiras.html" data-cat="cadeiras">Cadeiras</a></li>
+      <li><a href="chaises.html" data-cat="chaises">Chaises</a></li>
+      <li><a href="conjuntos.html" data-cat="conjuntos">Conjuntos</a></li>
+      <li><a href="espreguicadeiras.html" data-cat="espreguicadeiras">Espreguiçadeiras</a></li>
+      <li><a href="mesas.html" data-cat="mesas">Mesas</a></li>
+      <li><a href="ninhos.html" data-cat="ninhos">Ninhos</a></li>
+      <li><a href="ombrelones.html" data-cat="ombrelones">Ombrelones</a></li>
+      <li><a href="poltronas.html" data-cat="poltronas">Poltronas</a></li>
+      <li><a href="puffs.html" data-cat="puffs">Puff's</a></li>
+      <li><a href="sofas.html" data-cat="sofas">Sofás</a></li>     
+    </ul>
+  </div>
+
+  <section class="section-hero" id="catalogHero">
+    <p class="section-subtitle">Coleção Premium</p>
+    <h1 class="section-title" id="activeTitle">Conjuntos</h1>
+    <div class="shimmer-line" style="width:80px;"></div>
+  </section>
+
+  <section class="catalog-section">
+    <div class="product-grid" id="productGrid">
+
+      <!-- PRIMEIRO CARD -->
+      <div class="product-card" data-cat="conjuntos">
+        <div class="card-name">Banqueta Retrô</div>
+        <div class="card-img-wrap">
+          <img src="IMG/fotos_vertical/11.png" alt="Banqueta Retrô"/>
+          <button class="card-zoom" data-img="IMG/fotos_vertical/11.png" aria-label="Ampliar">
+            <i class="fa fa-expand-alt"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="price-wrap">
+            <span class="value">R$ 327,00</span>
+          </div>
+          <span class="price-unit">cada</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Banqueta%20Retrô" target="_blank"
+            rel="noopener" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="https://shopee.com.br/SEU_PERFIL" target="_blank" rel="noopener" class="btn-shopee"><i
+              class="fas fa-shopping-bag"></i> Shopee</a>
+        </div>
+      </div>
+
+      <!-- SEGUNDO CARD -->
+      <div class="product-card" data-cat="conjuntos">
+        <div class="card-name">Conjunto Moderno</div>
+        <div class="card-img-wrap">
+          <img src="IMG/fotos_vertical/12.png" alt="Conjunto Moderno"/>
+          <button class="card-zoom" data-img="IMG/fotos_vertical/12.png" aria-label="Ampliar">
+            <i class="fa fa-expand-alt"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="price-wrap">
+            <span class="value">R$ 327,00</span>
+          </div>
+          <span class="price-unit">cada</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://wa.me/5519997742852?text=Tenho%20interesse%20na%20Conjunto%20Moderno" target="_blank"
+            rel="noopener" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="https://shopee.com.br/SEU_PERFIL" target="_blank" rel="noopener" class="btn-shopee"><i
+              class="fas fa-shopping-bag"></i> Shopee</a>
+        </div>
+      </div>
+
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <i class="fa fa-couch"></i>
+      <p>Nenhum produto nesta categoria ainda.</p>
+    </div>
+
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Produto ampliado" />
+      <button class="lightbox-close" id="lightboxClose"><i class="fa fa-times"></i></button>
+    </div>
+  </div>  
+</body>
+
+<footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-col-title">Busque pela Categoria</h3>
+        <a href="#catNav" class="btn-search-cat">
+          <i class="fa fa-search"></i>&nbsp; Busque o produto desejado
+        </a>
+        <div class="footer-logo">
+          <svg width="40" height="40" viewBox="0 0 52 52" fill="none">
+            <polygon points="26,5 30,16 43,16 33,24 37,37 26,30 15,37 19,24 9,16 22,16" fill="rgba(255,255,255,0.2)" />
+            <circle cx="26" cy="26" r="10" fill="none" stroke="#00B4B4" stroke-width="1.8" />
+            <ellipse cx="26" cy="26" rx="5.5" ry="10" fill="none" stroke="#00B4B4" stroke-width="1.2" />
+            <line x1="16" y1="26" x2="36" y2="26" stroke="#00B4B4" stroke-width="1.2" />
+            <line x1="26" y1="16" x2="26" y2="36" stroke="#00B4B4" stroke-width="1.2" />
+          </svg>
+          <div>
+            <div class="brand">Elegance</div>
+            <div class="sub">Lar &amp; Cia</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Contato</h3>
+        <ul class="contact-list">
+          <li><i class="fa fa-phone"></i> (19) 99774-2852</li>
+          <li><i class="fa fa-envelope"></i> contato@elegancelarecia.com.br</li>
+          <li><i class="fa fa-map-marker-alt"></i> Rua Francisco Bacarin, Nº 51 – Porto Ferreira – SP</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Redes Sociais</h3>
+        <div class="social-icons">
+          <a href="https://wa.me/5519997742852" target="_blank" rel="noopener" class="social-icon si-wa"
+            aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-ig"
+            aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://shopee.com.br/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-sh"
+            aria-label="Shopee">
+            <i class="fas fa-shopping-bag"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      © Copyright &mdash; <span>Elegance Lar &amp; Cia</span> &mdash; Móveis em Alumínio
+    </div>
+</footer>
+<script src="JS/catalogo.js"></script>
+</html>
