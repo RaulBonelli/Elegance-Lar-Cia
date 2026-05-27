@@ -236,3 +236,11 @@ function toggleSubCategories() {
   categories.style.borderBottom === 'none'
   subCategories.style.display = subCategories.style.display === 'block' ? 'none' : 'block';
 }
+
+function toggleCategories(){
+  // Toggle visibility of all category cards that use the `hidden` class.
+  const cards = document.querySelectorAll('.hidden');
+  cards.forEach(card => {
+    card.style.display = card.style.display === 'block' ? 'none' : 'block';
+  });
+}

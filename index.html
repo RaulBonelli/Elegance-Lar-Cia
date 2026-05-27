@@ -11,9 +11,13 @@
 
   <header class="topbar">
     <!-- CABEÇALHO (TOPBAR) Fixo no topo da tela, logo à esquerda, menu desktop, botão hambúrguer -->
-    <div class="logo">
-      <img src="./IMG/logo_vetor_imagem.svg" alt="Elegance Lar & Cia" class="logo-img" />
-    </div>
+      <div class="header-logo">
+        <img src="./IMG/logo_vetor_menu.svg" alt="Elegance Lar & Cia" class="header-logo-img" width="70" height="70" />
+        <div>
+          <div class="brand">Elegance</div>
+          <div class="sub">Lar &amp; Cia</div>
+        </div>
+      </div>
 
     <!-- MENU DESKTOP: visível apenas em telas acima de 900px (o CSS esconde abaixo disso) -->
     <nav class="desktop-nav">
@@ -97,7 +101,7 @@
   <section id="categorias">
     <div class="container">
       <div class="reveal">
-        <h2 class="section-title">Principais <span class="accent">Categorias</span></h2>
+        <h2 class="section-title">Todas <span class="accent">Categorias</span></h2>
         <p class="section-sub">Encontre o móvel perfeito para cada ambiente da sua casa</p>
       </div>
 
@@ -109,12 +113,16 @@
         <div class="cat-card"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/11.png"></div> Banquetas</div>
         <div class="cat-card"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/38.png"></div> Puff's</div>
         <div class="cat-card"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/1.png"></div> Espreguiçadeiras</div>
-        <div class="cat-card"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/69.png"></div> Chaise</div>
-        <div class="cat-card"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/66.png"></div> Conjuntos</div>
+        <div class="cat-card hidden" id="hidden"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/69.png"></div> Chaise</div>
+        <div class="cat-card hidden" id="hidden"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/57.png"></div> Ombrelone</div>
+        <div class="cat-card hidden" id="hidden"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/420.webp"></div> Ninhos</div>
+        <div class="cat-card hidden" id="hidden"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/68.png"></div> Sofas</div>
+        <div class="cat-card hidden" id="hidden"><div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/66.png"></div> Conjuntos</div>
+        
       </div>
 
       <div class="reveal" style="text-align:center">
-        <button class="btn-all">Todos os Produtos &nbsp;›</button>
+        <button class="btn-all" onclick="toggleCategories()">Todas as Categorias &nbsp;›</button>
       </div>
     </div>
   </section>
@@ -273,7 +281,7 @@
         <i class="fa fa-search"></i>&nbsp; Busque o produto desejado
       </a>
       <div class="footer-logo">
-        <img src="./IMG/logo_vetor_imagem.svg" alt="Elegance Lar & Cia" class="footer-logo-img" width="150" height="150" />
+        <img src="./IMG/logo_vetor_imagem_footer.svg" alt="Elegance Lar & Cia" class="footer-logo-img" width="70" height="70" />
         <div>
           <div class="brand">Elegance</div>
           <div class="sub">Lar &amp; Cia</div>

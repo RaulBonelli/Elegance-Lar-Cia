@@ -70,7 +70,7 @@ img { display: block; max-width: 100%; }
 }
 
 .logo-img {
-  height: 100px;
+  height: 60px;
   width: auto;
 }
 
@@ -348,7 +348,7 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
 /* Para mudar o número de colunas: troque o 4 por outro número */
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;       /* espaço entre os cards */
   margin-top: 28px;
 }
@@ -366,6 +366,12 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--navy);
+  width: 300px;
+  height: 100px;
+}
+
+.hidden{
+  display: none;
 }
 
 /* Efeito hover: sobe levemente e muda a borda */
@@ -723,6 +729,17 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
        letter-spacing: 2px;
        }
     .footer-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 500; letter-spacing: 1px; }
+
+
+    .header-logo { display: flex; align-items: center; gap: 10px; }
+    .header-logo .brand {
+       font-family: 'Bebas Neue', sans-serif;
+       font-size: 22px;
+       color: var(--navy);
+       letter-spacing: 2px;
+       font-weight: 900;
+       }
+    .header-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 700; letter-spacing: 1px; }
 
     /* col 2 */
     .contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
