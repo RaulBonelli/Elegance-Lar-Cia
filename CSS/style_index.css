@@ -460,6 +460,15 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
   height: 260px;
   top: 0;
   left: 0;
+  transition: 2s;
+}
+
+.about-img-1:hover {
+  width: 80%;
+  height: 260px;
+  top: 0;
+  left: 0;
+  z-index: 50;
 }
 
 /* Foto secundária: menor, sobreposta no canto inferior direito */
@@ -469,6 +478,14 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
   bottom: 0;
   right: 0;
   border: 4px solid var(--white); /* borda branca cria separação visual */
+}
+
+.about-img-2:hover {
+  width: 70%;
+  height: 200px;
+  bottom: 0;
+  right: 0;
+  border: 4px solid var(--white);
 }
 
 /* Lista de diferenciais em coluna */
