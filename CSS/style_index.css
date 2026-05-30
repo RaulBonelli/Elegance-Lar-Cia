@@ -812,11 +812,12 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
 
 
 
-/* Telas abaixo de 900px (tablets e celulares) */
-@media (max-width: 900px) {
+/* Telas abaixo de 968px (tablets e celulares) */
+@media (max-width: 968px) {
   .desktop-nav { display: none; } /* esconde o menu horizontal */
   .hamburger   { display: flex; } /* mostra o botão ☰ */
   .topbar      { padding: 14px 20px; } /* reduz o padding lateral */
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
   .subCategorias {
      display: none;
      list-style: none;
@@ -828,7 +829,7 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
     margin-bottom: 8px;
    }
   }
-/* Telas abaixo de 768px (celulares) */
+/* Telas até 768px (tablets) */
 @media (max-width: 768px) {
   section { padding: 44px 20px; } /* menos espaçamento nas seções */
 
@@ -846,4 +847,34 @@ section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
   .review-card { min-width: 100%; }
 
   footer { padding: 40px 20px 20px; }
+}
+
+/* Telas até 640px (celulares) */
+@media (max-width: 640px) {
+  section { padding: 22px 10px; } /* menos espaçamento nas seções */
+
+  /* Categorias: de 4 para 2 colunas */
+  .categories-grid { grid-template-columns: repeat(1, 1fr); display: flex; flex-direction: column; align-items: center; }
+
+  /* Sobre: de 2 para 1 coluna (fotos em cima, texto emb  aixo) */
+  .about-grid   { grid-template-columns: 1fr; }
+  .about-images { height: 70px; } /* altura menor para as fotos */
+
+  .about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: 150px;
+  }
+
+  /* Adicioana uma margem superior, para dar mais espaço entre o texto e as fotos, que ficam muito próximas em telas pequenas. */
+  .about-features { margin-top: 150px; } 
+
+  /* Rodapé: de 3 para 1 coluna */
+  .footer-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Avaliações: um card por vez (largura total) */
+  .review-card { min-width: 100%; }
+
+  footer { padding: 20px 10px 10px; }
 }
