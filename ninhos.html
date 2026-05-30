@@ -13,6 +13,41 @@
   <link rel="icon" type="image/svg+xml" href="IMG/logo_vetor_imagem.svg">
 </head>
 
+<header class="topbar">
+  <!-- CABEÇALHO (TOPBAR) Fixo no topo da tela, logo à esquerda, menu desktop, botão hambúrguer -->
+  <a href="#home" class="header-logo">
+    <img src="./IMG/logo_vetor_menu.svg" alt="Elegance Lar & Cia" class="header-logo-img" width="70" height="70" />
+    <div>
+      <div class="brand">Elegance</div>
+      <div class="sub">Lar &amp; Cia</div>
+    </div>
+  </a>
+  <!-- MENU DESKTOP: visível apenas em telas acima de 900px (o CSS esconde abaixo disso) -->
+  <nav class="desktop-nav">
+    <div>
+      <a href="#home">Home</a>
+    </div>
+    <div>
+      <a href="#categorias">Móveis</a>
+    </div>
+    <div>
+      <a href="#sobre">Sobre a Empresa</a>
+    </div>
+    <div>
+      <a href="#avaliacoes">Avaliações</a>
+    </div>
+    <div>
+      <a href="#localizacao">Contatos</a>
+    </div>
+  </nav>
+
+  <!-- BOTÃO HAMBÚRGUER -->
+  <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
 
 <header class="header">
   <div class="header-top">
@@ -187,15 +222,16 @@
       <div class="social-icons">
         <a href="https://wa.me/5519997742852" target="_blank" rel="noopener" class="social-icon si-wa"
           aria-label="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
+          <i class="fab fa-whatsapp"></i><img src="./IMG/1.png" alt="" srcset="" width="30" height="30">
         </a>
         <a href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-ig"
           aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
+          <i class="fab fa-instagram"></i><img src="./IMG/instagram1.png" alt="instagram" srcset="" width="30"
+            height="30">
         </a>
         <a href="https://shopee.com.br/SEU_PERFIL" target="_blank" rel="noopener" class="social-icon si-sh"
           aria-label="Shopee">
-          <i class="fas fa-shopping-bag"></i>
+          <i class="fas fa-shopping-bag"></i><img src="./IMG/5.png" alt="shopee" srcset="" width="40" height="40">
         </a>
       </div>
     </div>

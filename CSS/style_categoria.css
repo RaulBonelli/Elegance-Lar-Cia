@@ -1,25 +1,33 @@
  /* ===================== CSS VARIABLES ===================== */
     :root {
-      --roxo: #1E1055;
-      --roxo-mid: #2D1B69;
+      --navy:   #1a2d5a; /* azul escuro — cor principal da marca */
+      --teal:   #3abfbf; /* verde-água — cor de destaque */
+      --gold:   #c9a84c; /* dourado — reservado para uso futuro */
+      --white:  #ffffff; /* branco puro */
+      --light:  #f7f9fc; /* fundo levemente acinzentado de seções alternadas */
+      --gray:   #6b7280; /* cinza para textos secundários */
+      --text:   #1f2937; /* quase preto — texto principal */
+      --border: #e5e7eb; /* cinza claro para bordas e divisores */
+      --roxo:       #1E1055;
+      --roxo-mid:   #2D1B69;
       --roxo-light: #4A2FA0;
-      --teal: #00B4B4;
+      --teal:       #00B4B4;
       --teal-light: #00D4D4;
-      --gold: #C9A84C;
-      --white: #FFFFFF;
-      --off-white: #F7F7FA;
+      --gold:       #C9A84C;
+      --white:      #FFFFFF;
+      --off-white:  #F7F7FA;
       --gray-light: #F0F0F5;
-      --gray: #9999AA;
-      --gray-dark: #444455;
-      --green-wa: #25D366;
-      --orange-sh: #EE4D2D;
-      --radius-sm: 10px;
-      --radius-md: 18px;
-      --radius-lg: 28px;
-      --shadow-sm: 0 2px 12px rgba(30, 16, 85, 0.08);
-      --shadow-md: 0 8px 32px rgba(30, 16, 85, 0.14);
-      --shadow-lg: 0 20px 60px rgba(30, 16, 85, 0.18);
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --gray:       #9999AA;
+      --gray-dark:  #444455;
+      --green-wa:   #25D366;
+      --orange-sh:  #EE4D2D;
+      --radius-sm:  10px;
+      --radius-md:  18px;
+      --radius-lg:  28px;
+      --shadow-sm:  0 2px 12px rgba(30,16,85,0.08);
+      --shadow-md:  0 8px 32px rgba(30,16,85,0.14);
+      --shadow-lg:  0 20px 60px rgba(30,16,85,0.18);
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
     }
 
     /* ===================== RESET ===================== */
@@ -71,6 +79,164 @@
     ::-webkit-scrollbar-thumb {
       background: var(--teal);
       border-radius: 99px;
+    }
+
+    /* ===================== HEADER TOPBAR ===================== */
+    .topbar {
+      background: var(--white);
+      padding: 0px 40px;       /* espaçamento interno: 16px em cima/baixo, 40px nos lados */
+      display: flex;             /* coloca filhos em linha (logo + nav + hamburger) */
+      align-items: center;       /* alinha verticalmente ao centro */
+      justify-content: space-between; /* empurra logo para a esquerda, hamburger para a direita */
+      border-bottom: 1px solid var(--border);
+      position: sticky;          /* gruda no topo ao rolar a página */
+      top: 0;
+      z-index: 200; 
+      height: 80px;             /* fica na frente de outros elementos */
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); /* sombra sutil embaixo */
+    }
+
+    .header-logo { display: flex; align-items: center; gap: 10px; }
+    .header-logo .brand {
+       font-family: 'Bebas Neue', sans-serif;
+       font-size: 22px;
+       color: var(--navy);
+       letter-spacing: 2px;
+       font-weight: 900;
+       }
+    .header-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 700; letter-spacing: 1px; }
+
+    .logo-img {
+      height: 60px;
+      width: auto;
+    }
+
+    /* MENU DESKTOP */
+    .desktop-nav {
+      display: flex;
+        height: 100%;
+        align-items: center;
+    }
+
+    .desktop-nav div{
+      height: 100%;
+      padding: 0px 20px 0px;
+      display: flex;
+      align-items: center;
+      color: var(--navy);
+    }
+    .desktop-nav div:hover{background-color: var(--navy);
+    color: var(--light);}
+
+    .desktop-nav a {
+      font-size: 0.82rem;
+      font-weight: 700;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent; /* borda invisível (reserva espaço) */
+      transition: border-color .2s, color .2s; /* animação suave no hover */
+    }
+
+    /* Ao passar o mouse: muda cor e mostra a borda */
+    /* BOTÃO HAMBÚRGUER */
+    .hamburger {
+      display: none;             /* escondido no desktop */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;                  
+      width: 42px;
+      height: 42px;
+      background: none;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 8px;
+      transition: border-color .2s, background .2s;
+      margin-left: auto;        
+    }
+
+    .hamburger:hover {
+      border-color: var(--teal);
+      background: rgba(58,191,191,0.06);
+    }
+
+    /* Cada linha do ícone ☰ */
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform .35s ease, opacity .25s ease, width .25s ease;
+      transform-origin: center;
+    }
+
+    /* Linha 1*/
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    /* Linha 2*/
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
+    /* Linha 3*/
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* MENU MOBILE */
+    .mobile-nav {
+      position: fixed;           /* fixo na tela, não rola com o conteúdo */
+      top: 0;
+      right: -280px;             /* começa escondido fora da tela (à direita) */
+      width: 280px;
+      height: 100vh;             /* ocupa 100% da altura da tela */
+      background: var(--navy);
+      z-index: 300;
+      padding: 90px 32px 40px;  /* 90px no topo para não sobrepor o header */
+      transition: right .35s cubic-bezier(.4,0,.2,1); /* animação de deslizamento */
+      box-shadow: -4px 0 30px rgba(0,0,0,0.2);
+    }
+
+    /* Quando o JS adiciona a classe "open": o menu entra na tela */
+    .mobile-nav.open { right: 0; }
+
+    /* Links do menu mobile em coluna */
+    .mobile-nav nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav nav a {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.8); /* branco levemente transparente */
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1); /* separador sutil */
+      transition: color .2s, padding-left .2s;
+    }
+
+    /* Remove separador do último item */
+    .mobile-nav nav a:last-child { border-bottom: none; }
+
+    /* Hover: muda cor e recua levemente para a direita */
+    .mobile-nav nav a:hover {
+      color: var(--teal);
+      padding-left: 8px;
+    }
+
+    #categoriasLink{
+      border-bottom: 1px solid rgba(255,255,255,0.1); 
     }
 
     /* ===================== HEADER ===================== */
