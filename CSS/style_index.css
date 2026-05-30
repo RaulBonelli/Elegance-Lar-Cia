@@ -1,0 +1,880 @@
+/* VARIÁVEIS DE COR E FONTE */
+:root {
+  --navy:   #1a2d5a; /* azul escuro — cor principal da marca */
+  --teal:   #3abfbf; /* verde-água — cor de destaque */
+  --gold:   #c9a84c; /* dourado — reservado para uso futuro */
+  --white:  #ffffff; /* branco puro */
+  --light:  #f7f9fc; /* fundo levemente acinzentado de seções alternadas */
+  --gray:   #6b7280; /* cinza para textos secundários */
+  --text:   #1f2937; /* quase preto — texto principal */
+  --border: #e5e7eb; /* cinza claro para bordas e divisores */
+  --roxo:       #1E1055;
+  --roxo-mid:   #2D1B69;
+  --roxo-light: #4A2FA0;
+  --teal:       #00B4B4;
+  --teal-light: #00D4D4;
+  --gold:       #C9A84C;
+  --white:      #FFFFFF;
+  --off-white:  #F7F7FA;
+  --gray-light: #F0F0F5;
+  --gray:       #9999AA;
+  --gray-dark:  #444455;
+  --green-wa:   #25D366;
+  --orange-sh:  #EE4D2D;
+  --radius-sm:  10px;
+  --radius-md:  18px;
+  --radius-lg:  28px;
+  --shadow-sm:  0 2px 12px rgba(30,16,85,0.08);
+  --shadow-md:  0 8px 32px rgba(30,16,85,0.14);
+  --shadow-lg:  0 20px 60px rgba(30,16,85,0.18);
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* RESET GERAL Por padrão, browsers adicionam margens e paddings próprios. */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Rolagem suave ao clicar nos links do menu */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif; /* fonte padrão de toda a página */
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden; /* impede barra de rolagem horizontal */
+}
+
+/* Remove sublinhado de todos os links por padrão */
+a { text-decoration: none; color: inherit; }
+
+/* Imagens nunca ultrapassam o container que as contém */
+img { display: block; max-width: 100%; }
+
+
+/* CABEÇALHO (TOPBAR) */
+.topbar {
+  background: var(--white);
+  padding: 0px 40px;       /* espaçamento interno: 16px em cima/baixo, 40px nos lados */
+  display: flex;             /* coloca filhos em linha (logo + nav + hamburger) */
+  align-items: center;       /* alinha verticalmente ao centro */
+  justify-content: space-between; /* empurra logo para a esquerda, hamburger para a direita */
+  border-bottom: 1px solid var(--border);
+  position: sticky;          /* gruda no topo ao rolar a página */
+  top: 0;
+  z-index: 200; 
+  height: 80px;             /* fica na frente de outros elementos */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); /* sombra sutil embaixo */
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+/* MENU DESKTOP */
+.desktop-nav {
+  display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.desktop-nav div{
+  height: 100%;
+  padding: 0px 20px 0px;
+  display: flex;
+  align-items: center;
+  color: var(--navy);
+}
+.desktop-nav div:hover{background-color: var(--navy);
+color: var(--light);}
+
+.desktop-nav a {
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent; /* borda invisível (reserva espaço) */
+  transition: border-color .2s, color .2s; /* animação suave no hover */
+}
+
+/* Ao passar o mouse: muda cor e mostra a borda */
+
+
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+  display: none;             /* escondido no desktop */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;                  
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  transition: border-color .2s, background .2s;
+  margin-left: auto;        
+}
+
+.hamburger:hover {
+  border-color: var(--teal);
+  background: rgba(58,191,191,0.06);
+}
+
+/* Cada linha do ícone ☰ */
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .35s ease, opacity .25s ease, width .25s ease;
+  transform-origin: center;
+}
+
+/* Linha 1*/
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+/* Linha 2*/
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+/* Linha 3*/
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MENU MOBILE */
+.mobile-nav {
+  position: fixed;           /* fixo na tela, não rola com o conteúdo */
+  top: 0;
+  right: -280px;             /* começa escondido fora da tela (à direita) */
+  width: 280px;
+  height: 100vh;             /* ocupa 100% da altura da tela */
+  background: var(--navy);
+  z-index: 300;
+  padding: 90px 32px 40px;  /* 90px no topo para não sobrepor o header */
+  transition: right .35s cubic-bezier(.4,0,.2,1); /* animação de deslizamento */
+  box-shadow: -4px 0 30px rgba(0,0,0,0.2);
+}
+
+/* Quando o JS adiciona a classe "open": o menu entra na tela */
+.mobile-nav.open { right: 0; }
+
+/* Links do menu mobile em coluna */
+.mobile-nav nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav nav a {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.8); /* branco levemente transparente */
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1); /* separador sutil */
+  transition: color .2s, padding-left .2s;
+}
+
+/* Remove separador do último item */
+.mobile-nav nav a:last-child { border-bottom: none; }
+
+/* Hover: muda cor e recua levemente para a direita */
+.mobile-nav nav a:hover {
+  color: var(--teal);
+  padding-left: 8px;
+}
+
+#categoriasLink{
+  border-bottom: 1px solid rgba(255,255,255,0.1); 
+}
+
+/* OVERLAY (FUNDO ESCURECIDO) */
+.overlay {
+  position: fixed;
+  inset: 0;                  /* cobre a tela toda (top/right/bottom/left: 0) */
+  background: rgba(0,0,0,0.45);
+  z-index: 250;              /* entre o conteúdo (z:200) e o menu (z:300) */
+  opacity: 0;
+  pointer-events: none;      /* invisível = não captura cliques */
+  transition: opacity .35s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;       /* visível = captura cliques (fecha o menu) */
+}
+
+
+/* HERO (CARROSSEL PRINCIPAL) */
+.hero {
+  position: relative;        /* necessário para posicionar botões e pontos */
+  overflow: hidden;          /* esconde slides fora da área visível */
+  height: 400px;             /* altura do banner — ajuste à vontade */
+  background: #222;
+}
+
+/* Container que agrupa todos os slides lado a lado */
+.slides {
+  display: flex;             /* alinha os slides em linha */
+  height: 100%;
+  transition: transform .6s ease; /* animação suave de deslizamento */
+}
+
+/* Cada slide ocupa 100% da largura (um por vez visível) */
+.slide {
+  min-width: 100%;           /* cada slide ocupa toda a largura */
+  height: 100%;
+  background-size: cover;    /* foto cobre todo o slide sem distorcer */
+  background-position: center;
+  position: relative;
+}
+
+/* Sombra gradiente sobre cada slide (melhora legibilidade) */
+.slide::after {
+  content: '';               /* pseudo-elemento precisa de content para existir */
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.45));
+}
+
+/* Fotos de cada slide */
+.slide-1 { background-image: url('../IMG/fotos_carrossel/46.png'); }
+.slide-2 { background-image: url('../IMG/fotos_carrossel/61.png'); }
+.slide-3 { background-image: url('../IMG/fotos_carrossel/40.png'); }
+
+/* Botões de seta (‹ e ›) do carrossel */
+.carousel-btn {
+  position: absolute;        /* posicionado dentro do .hero */
+  top: 50%;
+  transform: translateY(-50%); /* centraliza verticalmente */
+  z-index: 10;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;        /* deixa o botão redondo */
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: background .2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.carousel-btn:hover { background: var(--white); }
+.carousel-btn.prev { left: 20px; }   /* seta esquerda */
+.carousel-btn.next { right: 20px; }  /* seta direita */
+
+/* Pontinhos na base do carrossel */
+.dots {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%); /* centraliza horizontalmente */
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55); /* branco semi-transparente */
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+/* Ponto ativo: mais branco e levemente maior */
+.dot.active {
+  background: var(--white);
+  transform: scale(1.2);
+}
+
+
+/* LAYOUT GERAL DAS SEÇÕES - Todas as <section> têm o mesmo padding .container limita a largura máxima e centraliza.*/
+section { padding: 64px 40px; } /* espaçamento interno: 64px em cima/baixo */
+
+.container {
+  max-width: 1100px;         /* largura máxima do conteúdo */
+  margin: 0 auto;            /* centraliza horizontalmente */
+}
+
+/* ── Título padrão das seções ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--navy);
+  display: inline;           /* permite que o <span> fique na mesma linha */
+}
+
+/* Palavra em destaque dentro do título (cor verde-água) */
+.section-title .accent {
+  color: var(--teal);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Subtítulo abaixo do título principal */
+.section-sub {
+  color: var(--gray);
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+
+/* SEÇÃO CATEGORIAS */
+#categorias { background: var(--white); }
+
+/* Grade: 4 colunas iguais (1fr = 1 fração do espaço disponível) */
+/* Para mudar o número de colunas: troque o 4 por outro número */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;       /* espaço entre os cards */
+  margin-top: 28px;
+}
+
+/* Card de cada categoria */
+.cat-card {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--navy);
+  width: 300px;
+  height: 100px;
+}
+
+.hidden{
+  display: none;
+}
+
+/* Efeito hover: sobe levemente e muda a borda */
+.cat-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 18px rgba(58,191,191,0.15);
+  transform: translateY(-2px); /* sobe 2px */
+}
+
+/* Garante que o container do ícone centralize a imagem */
+.cat-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;  /* Ajuste conforme o tamanho desejado */
+  height: 50px; /* Ajuste conforme o tamanho desejado */
+  margin: 0 auto 10px; /* Centraliza e dá espaço para o texto abaixo */
+}
+
+/* Controla o tamanho da imagem dentro do ícone */
+.cat-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garante que a imagem não distorça */
+}
+
+/* Botão "Ver Todas as Categorias" */
+.btn-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  background: var(--teal);
+  color: var(--white);
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background .2s, transform .2s;
+  cursor: pointer;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+}
+
+.btn-all:hover { background: #2fa8a8; transform: translateY(-2px); }
+
+
+/* SOBRE (QUEM NÓS SOMOS) */
+#sobre { background: var(--light); } /* fundo levemente cinza para contrastar */
+
+/* Título grande com fonte serifada */
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--navy);
+  margin-bottom: 40px;
+}
+
+/* Grade de 2 colunas: fotos | textos */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* duas colunas iguais */
+  gap: 48px;
+  align-items: start; /* alinha pelo topo */
+}
+
+/* Área das fotos sobrepostas */
+.about-images {
+  position: relative; /* necessário para as fotos com position: absolute */
+  height: 380px;
+}
+
+/* Estilo comum das duas fotos */
+.about-img-1, .about-img-2 {
+  position: absolute; /* sai do fluxo normal para sobrepor */
+  border-radius: 12px;
+  object-fit: cover;  /* recorta a foto para preencher sem distorcer */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* Foto principal: maior, canto superior esquerdo */
+.about-img-1 {
+  width: 72%;
+  height: 260px;
+  top: 0;
+  left: 0;
+  transition: 2s;
+}
+
+.about-img-1:hover {
+  width: 80%;
+  height: 260px;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+/* Foto secundária: menor, sobreposta no canto inferior direito */
+.about-img-2 {
+  width: 60%;
+  height: 200px;
+  bottom: 0;
+  right: 0;
+  transition: 2s;
+  border: 4px solid var(--white); /* borda branca cria separação visual */
+}
+
+.about-img-2:hover {
+  width: 70%;
+  height: 200px;
+  bottom: 0;
+  right: 0;
+  border: 4px solid var(--white);
+}
+
+/* Lista de diferenciais em coluna */
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Cada item tem uma linha divisória embaixo */
+.feature-item {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Remove a linha do último item */
+.feature-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.feature-item h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7; /* espaçamento entre linhas do texto */
+}
+
+
+/* SEÇÃO LOCALIZAÇÃO */
+#localizacao { background: var(--white); }
+
+/* Título e subtítulo centralizados */
+.loc-title { text-align: center; }
+.loc-sub   { text-align: center; margin-bottom: 32px; }
+
+/* Container do mapa: tamanho fixo com cantos arredondados */
+.map-placeholder {
+  width: 100%;
+  height: 320px;
+  background: #e8edf2;  /* cor de fundo enquanto o mapa carrega */
+  border-radius: 14px;
+  overflow: hidden;     /* respeita o border-radius no iframe */
+}
+
+/* O iframe do Google Maps ocupa todo o container */
+.map-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Linhas de contato abaixo do mapa */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.contact-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+/* "Endereço:", "Telefone:", "Horários:" em destaque */
+.contact-label {
+  font-weight: 800;
+  color: var(--teal);
+  min-width: 90px; /* largura mínima para alinhar os valores */
+}
+
+.contact-val { color: var(--text); }
+
+
+/* AVALIAÇÕES */
+#avaliacoes { background: var(--light); }
+
+.reviews-title { text-align: center; margin-bottom: 36px; }
+
+/* Máscara que esconde os cards fora da área visível */
+.reviews-wrapper { overflow: hidden; }
+
+/* Trilho com todos os cards lado a lado */
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  transition: transform .5s ease; /* animação de deslizamento */
+}
+
+/* Cada card ocupa metade da largura (2 visíveis por vez no desktop) */
+/* Em mobile o CSS responsivo muda para 100% */
+.review-card {
+  min-width: calc(50% - 12px); /* 50% menos metade do gap */
+  background: var(--white);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+
+/* Foto do produto dentro do card */
+.review-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.review-text {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* Rodapé do card: nome à esquerda, data à direita */
+.review-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-name { font-weight: 800; font-size: 0.85rem; color: var(--navy); }
+.review-date { font-size: 0.78rem; color: #9ca3af; }
+
+/* Área de navegação: seta | pontos | seta */
+.reviews-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.rev-dots { display: flex; gap: 8px; }
+
+/* Pontinhos do carrossel de avaliações */
+.rev-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background .2s;
+}
+
+/* Ponto ativo fica azul */
+.rev-dot.active { background: var(--navy); }
+
+/* Botões de seta do carrossel de avaliações */
+.rev-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: background .2s, border-color .2s;
+}
+
+.rev-btn:hover { border-color: var(--navy); background: var(--light); }
+
+
+/* RODAPÉ (FOOTER) */
+.footer {
+      background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-mid) 50%, #0D2A3D 100%);
+      color: var(--white);
+      padding: 56px 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,180,180,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: 60px; left: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-col-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--teal);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-col-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 36px; height: 2px;
+      background: var(--gold);
+      border-radius: 99px;
+    }
+
+    /* col 1 */
+    .btn-search-cat {
+      display: block;
+      padding: 12px 20px;
+      border-radius: 99px;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+      transition: var(--transition);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(4px);
+      margin-bottom: 28px;
+    }
+    .btn-search-cat:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 4px 20px rgba(0,180,180,0.4);
+      transform: translateY(-2px);
+    }
+
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo .brand {
+       font-family: 'Bebas Neue', sans-serif;
+       font-size: 22px;
+       color: var(--white);
+       letter-spacing: 2px;
+       }
+    .footer-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 500; letter-spacing: 1px; }
+
+
+    .header-logo { display: flex; align-items: center; gap: 10px; }
+    .header-logo .brand {
+       font-family: 'Bebas Neue', sans-serif;
+       font-size: 22px;
+       color: var(--navy);
+       letter-spacing: 2px;
+       font-weight: 900;
+       }
+    .header-logo .sub   { font-size: 12px; color: var(--teal); font-weight: 700; letter-spacing: 1px; }
+
+    /* col 2 */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .contact-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+    .contact-list li i { color: var(--teal); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+
+    /* col 3 — social */
+    .social-icons { display: flex; gap: 16px; align-items: center; }
+    .social-icon {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      color: var(--white);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .social-icon:hover { transform: translateY(-4px) scale(1.1); }
+    .social-icon:hover::before { opacity: 1; }
+
+    .si-wa  { background: var(--green-wa); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+    .si-wa:hover  { box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+
+    .si-ig  { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 16px rgba(131,58,180,0.3); }
+    .si-ig:hover  { box-shadow: 0 8px 28px rgba(131,58,180,0.55); }
+
+    .si-sh  { background: linear-gradient(135deg, #FF6B35, var(--orange-sh)); box-shadow: 0 4px 16px rgba(238,77,45,0.3); }
+    .si-sh:hover  { box-shadow: 0 8px 28px rgba(238,77,45,0.55); }
+
+    /* copyright bar */
+    .footer-copy {
+      text-align: center;
+      padding: 24px 20px;
+      margin-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-copy span { color: var(--teal); }
+
+
+
+/* Telas abaixo de 968px (tablets e celulares) */
+@media (max-width: 968px) {
+  .desktop-nav { display: none; } /* esconde o menu horizontal */
+  .hamburger   { display: flex; } /* mostra o botão ☰ */
+  .topbar      { padding: 14px 20px; } /* reduz o padding lateral */
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .subCategorias {
+     display: none;
+     list-style: none;
+   }
+   .subCategorias li{
+   
+    margin-left: 20px;
+    text-decoration: none;
+    margin-bottom: 8px;
+   }
+  }
+/* Telas até 768px (tablets) */
+@media (max-width: 768px) {
+  section { padding: 44px 20px; } /* menos espaçamento nas seções */
+
+  /* Categorias: de 4 para 2 colunas */
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Sobre: de 2 para 1 coluna (fotos em cima, texto embaixo) */
+  .about-grid   { grid-template-columns: 1fr; }
+  .about-images { height: 260px; } /* altura menor para as fotos */
+
+  /* Rodapé: de 3 para 1 coluna */
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Avaliações: um card por vez (largura total) */
+  .review-card { min-width: 100%; }
+
+  footer { padding: 40px 20px 20px; }
+}
+
+/* Telas até 640px (celulares) */
+@media (max-width: 640px) {
+  section { padding: 22px 10px; } /* menos espaçamento nas seções */
+
+  /* Categorias: de 4 para 2 colunas */
+  .categories-grid { grid-template-columns: repeat(1, 1fr); display: flex; flex-direction: column; align-items: center; }
+
+  /* Sobre: de 2 para 1 coluna (fotos em cima, texto emb  aixo) */
+  .about-grid   { grid-template-columns: 1fr; }
+  .about-images { height: 70px; } /* altura menor para as fotos */
+
+  .about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: 150px;
+  }
+
+  /* Adicioana uma margem superior, para dar mais espaço entre o texto e as fotos, que ficam muito próximas em telas pequenas. */
+  .about-features { margin-top: 150px; } 
+
+  /* Rodapé: de 3 para 1 coluna */
+  .footer-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Avaliações: um card por vez (largura total) */
+  .review-card { min-width: 100%; }
+
+  footer { padding: 20px 10px 10px; }
+}

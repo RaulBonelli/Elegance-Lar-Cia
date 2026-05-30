@@ -1,107 +1,378 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Faz a página se adaptar ao tamanho da tela (celular, tablet, desktop) -->
+  <title>Elegance Lar & Cia – Móveis em Alumínio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet" /> <!-- Importa as fontes do Google Fonts (não precisa baixar nada) -->
+  <link rel="stylesheet" href="./CSS/style_index.css" />
+  <link rel="icon" type="image/png" href="./IMG/logo_transparente.png">
 </head>
+
+<header class="topbar">
+  <!-- CABEÇALHO (TOPBAR) Fixo no topo da tela, logo à esquerda, menu desktop, botão hambúrguer -->
+  <a href="#home" class="header-logo">
+    <img src="./IMG/logo_vetor_menu.svg" alt="Elegance Lar & Cia" class="header-logo-img" width="70" height="70" />
+    <div>
+      <div class="brand">Elegance</div>
+      <div class="sub">Lar &amp; Cia</div>
+    </div>
+  </a>
+  <!-- MENU DESKTOP: visível apenas em telas acima de 900px (o CSS esconde abaixo disso) -->
+  <nav class="desktop-nav">
+    <div>
+      <a href="#home">Home</a>
+    </div>
+    <div>
+      <a href="#categorias">Móveis</a>
+    </div>
+    <div>
+      <a href="#sobre">Sobre a Empresa</a>
+    </div>
+    <div>
+      <a href="#avaliacoes">Avaliações</a>
+    </div>
+    <div>
+      <a href="#localizacao">Contatos</a>
+    </div>
+  </nav>
+
+  <!-- BOTÃO HAMBÚRGUER -->
+  <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</header>
+
 <body>
-    <header id="header">
-        <div id="centerLogo"></div>
-        <div id="headerMenu">
-            <div class="headerOption">MÓVEIS</div>
-            <div class="headerOption">A EMPRESA</div>
-            <div class="headerOption">FEEDBACKS</div>
-            <div class="headerOption">CONTATOS</div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <nav>
+      <a href="#home" onclick="closeMenu()">Home</a>
+      <a href="#categorias" id="categoriasLink" onclick="toggleSubCategories()">Móveis</a>
+
+      <ul class="subCategorias">
+        <li><a href="./banquetas.html" onclick="closeMenu()">Banquetas</a></li>
+        <li><a href="./cadeiras.html" onclick="closeMenu()">Cadeiras</a></li>
+        <li><a href="./chaise.html" onclick="closeMenu()">Chaises</a></li>
+        <li><a href="./conjuntos.html" onclick="closeMenu()">Conjuntos</a></li>
+        <li><a href="./espreguiçadeiras.html" onclick="closeMenu()">Espreguiçadeiras</a></li>
+        <li><a href="./mesas.html" onclick="closeMenu()">Mesas</a></li>
+        <li><a href="./puffs.html" onclick="closeMenu()">Puffs</a></li>
+        <li><a href="./poltronas.html" onclick="closeMenu()">Poltronas</a></li>
+      </ul>
+
+      <a href="#sobre" onclick="closeMenu()">Sobre a Empresa</a>
+      <a href="#avaliacoes" onclick="closeMenu()">Avaliações</a>
+      <a href="#localizacao" onclick="closeMenu()">Contatos</a>
+    </nav>
+  </div>
+
+  <!-- fundo escurecido atrás do menu mobile ao clicar nele fecha o menu -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+
+  <!-- CARROSSEL -->
+  <div class="hero" id="home">
+    <!-- Container com todos os slides lado a lado -->
+    <div class="slides" id="slides">
+      <div class="slide slide-1"></div>
+      <div class="slide slide-2"></div>
+      <div class="slide slide-3"></div>
+    </div>
+
+    <!-- seta carrossel -->
+    <button class="carousel-btn prev" onclick="moveSlide(-1)">&#8249;</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)">&#8250;</button>
+
+    <!-- Pontinhos carrossel -->
+    <div class="dots" id="dots">
+      <div class="dot active" onclick="goSlide(0)"></div>
+      <div class="dot" onclick="goSlide(1)"></div>
+      <div class="dot" onclick="goSlide(2)"></div>
+    </div>
+  </div>
+
+
+  <!-- CATEGORIAS -->
+  <section id="categorias">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="section-title">Todas <span class="accent">Categorias</span></h2>
+        <p class="section-sub">Encontre o móvel perfeito para cada ambiente da sua casa</p>
+      </div>
+
+      <!-- Para trocar emoji: substitua o caractere dentro de <div class="cat-icon"> -->
+      <div class="categories-grid reveal">
+        <a href="./poltronas.html">
+          <div class="cat-card">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/37.png"></div> Poltronas
+          </div>
+        </a>
+        <a href="./cadeiras.html">
+          <div class="cat-card">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/7.png"></div> Cadeiras
+          </div>
+        </a>
+        <a href="./mesas.html">
+          <div class="cat-card">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/58.png"></div> Mesas
+          </div>
+        </a>
+        <a href="./banquetas.html">
+          <div class="cat-card">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/11.png"></div> Banquetas
+          </div>
+        </a>
+        <a href="./puffs.html">
+          <div class="cat-card">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/38.png"></div> Puff's
+          </div>
+        </a>
+        <a href="./espreguiçadeiras.html">
+          <div class="cat-card">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/1.png"></div> Espreguiçadeiras
+          </div>
+        </a>
+        <a href="./chaise.html">
+          <div class="cat-card hidden" id="hidden">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/69.png"></div> Chaise
+          </div>
+        </a>
+        <a href="./ombrelone.html">
+          <div class="cat-card hidden" id="hidden">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/57.png"></div> Ombrelone
+          </div>
+        </a>
+        <a href="./ninhos.html">
+          <div class="cat-card hidden" id="hidden">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/420.webp"></div> Ninhos
+          </div>
+        </a>
+        <a href="./sofas.html">
+          <div class="cat-card hidden" id="hidden">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/68.png"></div> Sofas
+          </div>
+        </a>
+        <a href="./conjuntos.html">
+          <div class="cat-card hidden" id="hidden">
+            <div class="cat-icon"><img src="./IMG/fotos_vertical_s_fundo/66.png"></div> Conjuntos
+          </div>
+        </a>
+
+      </div>
+
+      <div class="reveal" style="text-align:center">
+        <button class="btn-all" onclick="toggleCategories()">Todas as Categorias &nbsp;›</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SOBRE -->
+  <section id="sobre">
+
+    <div class="container">
+
+      <h2 class="about-title reveal">Quem nós somos?</h2>
+
+      <div class="about-grid">
+        <!-- COLUNA ESQUERDA: duas fotos. Para trocar as fotos: mude o atributo src="URL da sua foto" -->
+        <!-- alt="" descreve a imagem para SEO e acessibilidade — sempre preencha! -->
+        <div class="about-images reveal">
+          <img class="about-img-1" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80"
+            alt="Móveis Elegance" />
+          <img class="about-img-2" src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80"
+            alt="Loja Elegance" />
         </div>
-    </header>
-    <div id="container">
-        <div id="banner">
 
+        <!-- COLUNA DIREITA: lista de diferenciais -->
+        <div class="about-features reveal">
+          <div class="feature-item">
+            <h3>Artesanato Sofisticado Encontra Design Inovador</h3>
+            <p>Na interseção entre a herança artesanal e o design contemporâneo, nossos móveis trazem elegância
+              atemporal e inovação para o seu espaço.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Confiança e Qualidade em Móveis</h3>
+            <p>Selecionamos apenas os melhores materiais para oferecer durabilidade e beleza. Nossa loja é o destino de
+              confiança para móveis de alumínio que duram uma vida.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Serviço Excepcional</h3>
+            <p>Nossa equipe de profissionais está dedicada a fornecer um atendimento e suporte impecáveis, garantindo
+              uma experiência de compra superior.</p>
+          </div>
         </div>
-
-        <div id="categoriesMain">
-            <div id="categoriesText">
-                Principais categorias
-            </div>
-            <div id="categories">
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryText">
-                    ADNSHJSA
-                    </div>
-                    <div class="categoryImage">
-
-                    </div>
-                </div>
-                
-            </div>
-            <div id="moreCategoriesMain">
-                <div id="moreCategories">
-                    Ver Todas Categorias
-                </div>
-            </div>
-        </div>
+      </div>
 
     </div>
-    <footer>
-        
-    </footer>
+  </section>
+
+  <!-- LOCALIZAÇÃO -->
+  <section id="localizacao">
+    <div class="container">
+
+      <div class="reveal loc-title">
+        <h2 class="section-title">Nossa <span class="accent">Localização</span></h2>
+      </div>
+      <p class="section-sub loc-sub reveal">Venha nos visitar! Será um prazer te atender pessoalmente.</p>
+
+      <!-- MAPA DO GOOGLE MAPS INCORPORADO -->
+      <!-- Para trocar: Google Maps → Compartilhar → Incorporar mapa → copie o src do iframe -->
+      <div class="map-placeholder reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.4442114840926!2d-47.487656124305936!3d-21.87896380194889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4e128d422c4c312b%3A0x5b1f63eec0af2c74!2sElegance%20Lar%20%26%20Cia!5e0!3m2!1spt-BR!2sbr!4v1780151731986!5m2!1spt-BR!2sbr"
+          style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <!-- Dados de contato abaixo do mapa -->
+      <div class="contact-info reveal">
+        <div class="contact-row">
+          <span class="contact-label">Endereço:</span>
+          <span class="contact-val">Rua Francisco Bacarin, Nº 51 – Jardim Santa Maria, Porto Ferreira – SP</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Telefone:</span>
+          <span class="contact-val">(19) 99774-2852</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Horários:</span>
+          <span class="contact-val">Seg-Sex: 8h às 17h &nbsp;/&nbsp; Sáb: 9h às 15h.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section id="avaliacoes">
+    <div class="container">
+
+      <div class="reveal reviews-title">
+        <h2 class="section-title">☆ Avaliações dos <span class="accent">Clientes</span></h2>
+      </div>
+
+      <!-- overflow:hidden no CSS corta o que fica fora da área visível -->
+      <div class="reviews-wrapper reveal">
+        <!-- Este trilho se move para a esquerda/direita via JS -->
+        <div class="reviews-track" id="reviewsTrack">
+
+          <div class="review-card">
+            <img class="review-img" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=70"
+              alt="Produto avaliado" />
+            <p class="review-text">Excelente atendimento. Paciência… tivemos dúvidas sobre as cores, e eles enviaram
+              fotos reais. Muito bom!</p>
+            <div class="review-author">
+              <span class="review-name">Ribeirão Preto</span>
+              <span class="review-date">19/07/2024</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <img class="review-img" src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=70"
+              alt="Produto avaliado" />
+            <p class="review-text">Excelente atendimento. Paciência… tivemos dúvidas sobre as cores, e eles enviaram
+              fotos reais. Muito bom!</p>
+            <div class="review-author">
+              <span class="review-name">Ribeirão Preto</span>
+              <span class="review-date">19/01/2024</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <img class="review-img" src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=70"
+              alt="Produto avaliado" />
+            <p class="review-text">Produto de altíssima qualidade. Chegou bem embalado e dentro do prazo. Super
+              recomendo a loja!</p>
+            <div class="review-author">
+              <span class="review-name">São Paulo – SP</span>
+              <span class="review-date">05/03/2024</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- carrossel avaliações -->
+      <div class="reviews-nav">
+        <button class="rev-btn" onclick="moveReview(-1)">&#8592;</button>
+        <div class="rev-dots" id="revDots">
+          <div class="rev-dot active" onclick="goReview(0)"></div>
+          <div class="rev-dot" onclick="goReview(1)"></div>
+          <div class="rev-dot" onclick="goReview(2)"></div>
+        </div>
+        <button class="rev-btn" onclick="moveReview(1)">&#8594;</button>
+      </div>
+
+    </div>
+  </section>
 </body>
+
+<!-- RODAPÉ (FOOTER) -->
+<footer class="footer">
+  <div class="footer-grid">
+
+    <!-- col 1 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Busque pela Categoria</h3>
+      <a href="#catNav" class="btn-search-cat">
+        <i class="fa fa-search"></i>&nbsp; Busque o produto desejado
+      </a>
+      <div class="footer-logo">
+        <img src="./IMG/logo_vetor_imagem_footer.svg" alt="Elegance Lar & Cia" class="footer-logo-img" width="70"
+          height="70" />
+        <div>
+          <div class="brand">Elegance</div>
+          <div class="sub">Lar &amp; Cia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- col 2 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Contato</h3>
+      <ul class="contact-list">
+        <li><i class="fa fa-phone"></i> (19) 99774-2852</li>
+        <li><i class="fa fa-envelope"></i> contato@elegancelarecia.com.br</li>
+        <li><i class="fa fa-map-marker-alt"></i> Rua Francisco Bacarin, Nº 51 – Porto Ferreira – SP</li>
+      </ul>
+    </div>
+
+    <!-- col 3 -->
+    <div class="footer-col">
+      <h3 class="footer-col-title">Redes Sociais</h3>
+      <div class="social-icons">
+        <!-- SUBSTITUA os href pelos links reais -->
+        <a href="https://wa.me/5519997742852" target="_blank" rel="noopener" class="social-icon si-wa"
+          aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"><img src="./IMG/1.png" alt="" srcset="" width="30" height="30"> </i>
+        </a>
+        <a href="https://www.instagram.com/elegance_lar_e_cia/" target="_blank" rel="noopener" class="social-icon si-ig"
+          aria-label="Instagram">
+          <i class="fab fa-instagram"><img src="./IMG/instagram1.png" alt="instagram" srcset="" width="30"
+              height="30"></i>
+        </a>
+        <a href="https://shopee.com.br/elegancelarecia"
+          target="_blank" rel="noopener" class="social-icon si-sh" aria-label="Shopee">
+          <i class="fas fa-shopping-bag"><img src="./IMG/5.png" alt="shopee" srcset="" width="40" height="40"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">
+    © Copyright &mdash; <span>Elegance Lar &amp; Cia</span> &mdash; Móveis em Alumínio
+  </div>
+</footer>
+
+<!-- Liga este HTML ao arquivo JavaScript -->
+<script src="./JS/script_index.js"></script>
+
 </html>
