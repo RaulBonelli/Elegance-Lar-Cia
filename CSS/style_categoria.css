@@ -834,7 +834,7 @@
  .lightbox-close:hover {
    background: var(--teal);
    color: var(--white);
-   transform: rotate(90deg);
+   transform: scale(1.05);
  }
 
  /* ===================== FOOTER ===================== */
