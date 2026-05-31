@@ -68,7 +68,7 @@
     }
 
     /* ===================== SCROLLBAR ===================== */
-    ::-webkit-scrollbar {
+    /* ::-webkit-scrollbar {
       width: 6px;
     }
 
@@ -79,7 +79,7 @@
     ::-webkit-scrollbar-thumb {
       background: var(--teal);
       border-radius: 99px;
-    }
+    } */
 
     /* ===================== HEADER TOPBAR ===================== */
     .topbar {
