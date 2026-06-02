@@ -170,7 +170,7 @@ hamburger.addEventListener('click', () => {
 // Pega todos os elementos que devem ter animação de entrada
 const revEls = document.querySelectorAll('.reveal');
 
-// Cria o observador
+// Cria o observador API
 const observer = new IntersectionObserver(
 
   // Callback: executado quando um elemento entra ou sai da tela
@@ -241,6 +241,6 @@ function toggleCategories(){
   // Toggle visibility of all category cards that use the `hidden` class.
   const cards = document.querySelectorAll('.hidden');
   cards.forEach(card => {
-    card.style.display = card.style.display === 'block' ? 'none' : 'block';
+    card.style.display = card.style.display === 'flex' ? 'none' : 'flex';
   });
 }
