@@ -1054,32 +1054,10 @@ section {
 
 /* Telas abaixo de 968px (tablets e celulares) */
 @media (max-width: 968px) {
-<<<<<<< HEAD
   .desktop-nav { display: none; } /* esconde o menu horizontal */
   .hamburger   { display: flex; } /* mostra o botão ☰ */
   .topbar      { padding: 14px 20px; } /* reduz o padding lateral */
   .categories-grid { grid-template-columns: repeat(2, 1fr); }
-=======
-  .desktop-nav {
-    display: none;
-  }
-
-  /* esconde o menu horizontal */
-  .hamburger {
-    display: flex;
-  }
-
-  /* mostra o botão ☰ */
-  .topbar {
-    padding: 14px 20px;
-  }
-
-  /* reduz o padding lateral */
-  .categories-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
->>>>>>> 39df95ee395e0f0ee6521e4b2e192c4c86b714c0
   .subCategorias {
     display: none;
     list-style: none;
@@ -1091,11 +1069,7 @@ section {
     text-decoration: none;
     margin-bottom: 8px;
   }
-<<<<<<< HEAD
-=======
 }
-
->>>>>>> 39df95ee395e0f0ee6521e4b2e192c4c86b714c0
 /* Telas até 768px (tablets) */
 @media (max-width: 768px) {
   section {
@@ -1138,7 +1112,7 @@ section {
 
 /* Telas até 640px (celulares) */
 @media (max-width: 640px) {
-<<<<<<< HEAD
+
   section { padding: 22px 10px; } /* menos espaçamento nas seções */
 
   /* Categorias: de 4 para 2 colunas */
@@ -1147,32 +1121,6 @@ section {
   /* Sobre: de 2 para 1 coluna (fotos em cima, texto emb  aixo) */
   .about-grid   { grid-template-columns: 1fr; }
   .about-images { height: 70px; } /* altura menor para as fotos */
-=======
-  section {
-    padding: 22px 10px;
-  }
-
-  /* menos espaçamento nas seções */
-
-  /* Categorias: de 4 para 2 colunas */
-  .categories-grid {
-    grid-template-columns: repeat(1, 1fr);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Sobre: de 2 para 1 coluna (fotos em cima, texto emb  aixo) */
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-images {
-    height: 70px;
-  }
-
-  /* altura menor para as fotos */
->>>>>>> 39df95ee395e0f0ee6521e4b2e192c4c86b714c0
 
   .about-title {
     font-family: 'Playfair Display', serif;
@@ -1182,7 +1130,6 @@ section {
   }
 
   /* Adicioana uma margem superior, para dar mais espaço entre o texto e as fotos, que ficam muito próximas em telas pequenas. */
-<<<<<<< HEAD
   .about-features { margin-top: 150px; } 
 
   /* Rodapé: de 3 para 1 coluna */
@@ -1192,24 +1139,4 @@ section {
   .review-card { min-width: 100%; }
 
   footer { padding: 20px 10px 10px; }
-=======
-  .about-features {
-    margin-top: 150px;
-  }
-
-  /* Rodapé: de 3 para 1 coluna */
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  /* Avaliações: um card por vez (largura total) */
-  .review-card {
-    min-width: 100%;
-  }
-
-  footer {
-    padding: 20px 10px 10px;
-  }
->>>>>>> 39df95ee395e0f0ee6521e4b2e192c4c86b714c0
 }
