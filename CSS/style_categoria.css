@@ -701,6 +701,12 @@ button {
   position: relative; 
   padding-bottom: 10px;
 }
+.footer-col{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 165px;
+}
 
 .footer-col-title::after {
   content: '';
@@ -734,22 +740,29 @@ button {
   transform: translateY(-2px);
 }
 
-.footer-logo { 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; }
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: center;
+  justify-self: center;
+  margin-top: 40px;
+  margin-left: -100px;
+}
 
-.footer-logo .brand { 
-  font-family: 'Bebas Neue', sans-serif; 
-  font-size: 22px; 
-  color: var(--white); 
-  letter-spacing: 2px; }
+.footer-logo .brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--white);
+  letter-spacing: 2px;
+}
 
-.footer-logo .sub   { 
-  font-size: 12px; 
-  color: var(--teal); 
-  font-weight: 500; 
-  letter-spacing: 1px; }
+.footer-logo .sub {
+  font-size: 22px;
+  color: var(--teal);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
 
 .contact-list { 
   list-style: none; 

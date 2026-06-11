@@ -593,8 +593,8 @@ section {
 }
 
 .about-img-2:hover {
-  width: 70%;
-  height: 200px;
+  width: 50%;
+  height: 380px;
   bottom: 0;
   right: 0;
   border: 4px solid var(--white);
@@ -866,6 +866,14 @@ section {
   position: relative;
   padding-bottom: 10px;
 }
+.footer-col{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 165px;
+}
+
+
 
 .footer-col-title::after {
   content: '';
@@ -906,17 +914,21 @@ section {
   display: flex;
   align-items: center;
   gap: 10px;
+  align-self: center;
+  justify-self: center;
+  margin-top: 40px;
+  margin-left: -100px;
 }
 
 .footer-logo .brand {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
+  font-size: 32px;
   color: var(--white);
   letter-spacing: 2px;
 }
 
 .footer-logo .sub {
-  font-size: 12px;
+  font-size: 22px;
   color: var(--teal);
   font-weight: 500;
   letter-spacing: 1px;
@@ -1124,7 +1136,7 @@ section {
 
   .about-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--navy);
     margin-bottom: 150px;
   }
